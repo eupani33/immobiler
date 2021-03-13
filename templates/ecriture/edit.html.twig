@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Edition"%}
+
+{% block body %}
+
+    {{ include('ecriture/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ecriture_index') }}">Retour</a>
+
+    {{ include('ecriture/_delete_form.html.twig') }}
+{% endblock %}

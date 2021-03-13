@@ -1,0 +1,36 @@
+{{ form_start(form) }}
+<div class="container">
+	<form>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				{{form_row(form.libelle)}}
+			</div>
+			<div class="form-group col-md-6">
+				{{form_row(form.type)}}
+			</div>
+			<div class="form group com-md-6"></div>
+
+			<div class="form-row">
+				{{form_row(form.montant)}}
+			</div>
+			<div class="form-row">
+				{{form_row(form.local)}}
+			</div>
+		</div>
+
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				{{form_row(form.categorie)}}
+			</div>
+
+			<div class="form-group col-md-6">
+				{{form_row(form.pointage)}}
+			</div>
+			<div class="form-group col-md-6">
+				{{form_row(form.date)}}
+			</div>
+		</div>
+	</form>
+	<button type="submit" class="btn btn-primary">Valider</button>
+</div>
+{{ form_end(form) }}

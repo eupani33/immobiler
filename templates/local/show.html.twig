@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Local{% endblock %}
+
+{% block body %}
+ <table class="table">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ local.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ local.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('local_index') }}">back to list</a>
+
+    <a href="{{ path('local_edit', {'id': local.id}) }}">edit</a>
+
+    {{ include('local/_delete_form.html.twig') }}
+{% endblock %}

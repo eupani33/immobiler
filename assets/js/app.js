@@ -1,9 +1,8 @@
-import '../css/global.scss';
-
-require('datatables.net');
-require('jquery');
+import './../css/global.scss'
 
 
-$('#datatable').DataTable();
-$('#navbarDropdown').dropdown();
-$('jquery').jquery();
+const $ = require('jquery');
+require('bootstrap');
+require('bootstrap-table');
+
+console.log('fichier .js  chargé');

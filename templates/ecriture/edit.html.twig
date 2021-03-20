@@ -3,10 +3,11 @@
 {% block title "Edition"%}
 
 {% block body %}
+	<div class="contain mt-5">
 
-    {{ include('ecriture/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('ecriture/_form.html.twig', {'button_label': 'Update'}) }}
+    		<a href="{{ path('ecriture_index') }}"></a>
 
-    <a href="{{ path('ecriture_index') }}">Retour</a>
-
-    {{ include('ecriture/_delete_form.html.twig') }}
+		{{ include('ecriture/_delete_form.html.twig') }}
+	</div>
 {% endblock %}

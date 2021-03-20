@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Local{% endblock %}
+{% block title "Local" %}
 
 {% block body %}
-    <h1>Edit Local</h1>
+	<div class="contain mt-5">
 
-    {{ include('local/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('local/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('local_index') }}">back to list</a>
+		<a href="{{ path('local_index') }}"></a>
 
-    {{ include('local/_delete_form.html.twig') }}
+		{{ include('local/_delete_form.html.twig') }}
+	</div>
 {% endblock %}

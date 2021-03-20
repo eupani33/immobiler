@@ -1,4 +1,10 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="container">
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			{{form_row(form.nom)}}
+		</div>
+	</div>
+	<button type="submit" class="btn btn-primary">Valider</button>
+</div>
 {{ form_end(form) }}

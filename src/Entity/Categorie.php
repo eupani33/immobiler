@@ -39,6 +39,7 @@ class Categorie
         $this->ecriture = new ArrayCollection();
     }
 
+
     public function getId(): ?int
     {
         return $this->id;

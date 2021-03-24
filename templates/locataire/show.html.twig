@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Locataire{% endblock %}
+
+{% block body %}
+    <h1>Locataire</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ locataire.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ locataire.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ locataire.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ locataire.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ locataire.ville }}</td>
+            </tr>
+            <tr>
+                <th>Cp</th>
+                <td>{{ locataire.cp }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ locataire.email }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ locataire.tel }}</td>
+            </tr>
+            <tr>
+                <th>Date_naissance</th>
+                <td>{{ locataire.dateNaissance ? locataire.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Lieux_naissance</th>
+                <td>{{ locataire.lieuxNaissance }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ locataire.actif ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Civilite</th>
+                <td>{{ locataire.civilite }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('locataire_index') }}">back to list</a>
+
+    <a href="{{ path('locataire_edit', {'id': locataire.id}) }}">edit</a>
+
+    {{ include('locataire/_delete_form.html.twig') }}
+{% endblock %}

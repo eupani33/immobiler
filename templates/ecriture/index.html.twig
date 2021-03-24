@@ -17,6 +17,7 @@
 						</tr>
 					</thead>
 					<tbody>
+
 						{% for ecriture in ecritures %}
 							<tr>
 								<td>{{ ecriture.date ? ecriture.date|date('d/m/Y') : '' }}</td>
@@ -24,15 +25,27 @@
 								<td>{{ ecriture.libelle }}</td>
 								<td>{{ ecriture.montant_format }}€</td>
 								<td>{{ ecriture.pointage }}</td>
+
 								<td>
 									<a href="{{ path('ecriture_edit', {'id': ecriture.id}) }}">edit</a>
 								</td>
 							</tr>
 						{% endfor %}
+
+						{% if previous >= 0 %}
+							<a href="{{ path('ecriture_index',{offset: previous}) }}">Précedent
+							</a>
+						{% endif %}
+
+						{% if next < ecritures|length %}
+							<a href="{{ path('ecriture_index',{offset: next}) }}">Suivant</a>
+						{% endif %}
+
+
 					</tbody>
-				</table>
-			</div>
+				</tbody>
+			</table>
 		</div>
 	</div>
-	<a href="{{ path('ecriture_new') }}">Create new</a>
-{% endblock %}
+</div>
+<a href="{{ path('ecriture_new') }}">Create new</a>{% endblock %}

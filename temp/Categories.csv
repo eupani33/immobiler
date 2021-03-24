@@ -1,0 +1,28 @@
+1,Locataire,Loyer
+2,Locataire,Caution
+3,Locataire,Charges
+4,Locataire,Divers
+5,Syndic,Appel de fonds
+6,Syndic,Travaux
+12,Syndic,divers
+13,Syndic,charges
+14,Syndic,null
+15,Fournisseur,Electricien
+16,Fournisseur,Internet
+17,Fournisseur,Télèphone
+18,Fournisseur,Informatique
+19,Fournisseur,Assurances
+20,Fournisseur,Banque
+21,Fournisseur,Restaurant
+22,Fournisseur,Parking
+23,Fournisseur,Comptabilité
+24,Fournisseur,Impôts
+25,Fournisseur,Fournitures Bureau
+26,Fournisseur,Plombier
+27,Fournisseur,Materiel
+28,Fournisseur,Dépannage
+29,Associé,Capital
+30,Associé,Remboursement
+31,Associé,Frais kilomètriques
+32,Fournisseur,Menuiserie
+33,Fournisseur,Electricité

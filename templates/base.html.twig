@@ -25,14 +25,43 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="{{ path('home') }}">Accueil
 
-					</a>
+				<li class="nav-item active">
+					<a class="nav-link" href="{{ path('home') }}">Accueil</a>
 				</li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Locaux</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<li>
+							<a class="dropdown-item" href="{{ path('local_index') }}">Locaux</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Immeubles</a>
+						</li>
+					</ul>
+				</li>
+
+
+				<li class="nav-item active">
+					<a class="nav-link" href="{{ path('locataire_index') }}">Locataires</a>
+				</li>
+
+
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Contrats</a>
+				</li>
+
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Loyers</a>
+				</li>
+
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('ecriture_index') }}">Ecritures</a>
+					<a class="nav-link" href="{{ path('ecriture_index') }}">Banque</a>
 				</li>
+
+
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						Connexion

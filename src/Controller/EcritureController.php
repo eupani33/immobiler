@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\Ecriture;
 use App\Form\EcritureType;
+use App\Repository\EcritureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,14 +19,21 @@ class EcritureController extends AbstractController
     /**
      * @Route("/", name="ecriture_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Request $request, EcritureRepository $ecriture): Response
     {
-        $ecritures = $this->getDoctrine()
-            ->getRepository(Ecriture::class)
-            ->findAll();
+        $offset = max(0, $request->query->getInt('offset', 0));
+        $paginator = $ecriture->getEcriturePaginator($offset);
+
+
+        // $ecritures = $this->getDoctrine()
+        //   ->getRepository(Ecriture::class)
+        //   ->findAll();
 
         return $this->render('ecriture/index.html.twig', [
-            'ecritures' => $ecritures,
+            'ecritures' => $paginator,
+            'previous' => $offset - EcritureRepository::PAGINATOR_PER_PAGE,
+            'next' => min(count($paginator), $offset + EcritureRepository::PAGINATOR_PER_PAGE),
+
         ]);
     }
 
@@ -86,7 +95,7 @@ class EcritureController extends AbstractController
      */
     public function delete(Request $request, Ecriture $ecriture): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$ecriture->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $ecriture->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($ecriture);
             $entityManager->flush();

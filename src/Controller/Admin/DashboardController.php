@@ -21,12 +21,6 @@ class DashboardController extends AbstractDashboardController
         return parent::index();
     }
 
-    public function configureDashboard(): Dashboard
-    {
-        return Dashboard::new()
-            ->setTitle('Immobilier');
-    }
-
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoRoute('Retour', 'fas fa-home', 'home');

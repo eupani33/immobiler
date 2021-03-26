@@ -69,9 +69,15 @@ class Local
      */
     private $surface;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Contrat::class, mappedBy="local")
+     */
+    private $contrats;
+
     public function __construct()
     {
         $this->ecriture = new ArrayCollection();
+        $this->contrats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -215,5 +221,39 @@ class Local
         $this->surface = $surface;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Contrat[]
+     */
+    public function getContrats(): Collection
+    {
+        return $this->contrats;
+    }
+
+    public function addContrat(Contrat $contrat): self
+    {
+        if (!$this->contrats->contains($contrat)) {
+            $this->contrats[] = $contrat;
+            $contrat->setLocal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContrat(Contrat $contrat): self
+    {
+        if ($this->contrats->removeElement($contrat)) {
+            // set the owning side to null (unless already changed)
+            if ($contrat->getLocal() === $this) {
+                $contrat->setLocal(null);
+            }
+        }
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return $this->nom;
     }
 }

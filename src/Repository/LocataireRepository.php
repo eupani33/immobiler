@@ -19,6 +19,32 @@ class LocataireRepository extends ServiceEntityRepository
         parent::__construct($registry, Locataire::class);
     }
 
+    /**
+     * @return Locataire[] Returns an array of Locataire objects
+     */
+
+    public function findAll()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    // /**
+    //  * @return Locataire[] Returns an array of Locataire objects
+    //  */
+    /*
+    public function findByExampleField($value)
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('l.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     // /**
     //  * @return Locataire[] Returns an array of Locataire objects
     //  */

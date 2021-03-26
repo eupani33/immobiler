@@ -63,7 +63,7 @@ class Locataire
     private $lieux_naissance;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default":true})
      */
     private $actif;
 
@@ -71,6 +71,14 @@ class Locataire
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $civilite;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Contrat::class, mappedBy="locataire", cascade={"persist", "remove"})
+     */
+    private $contrat;
+
+
+
 
     public function getId(): ?int
     {
@@ -207,5 +215,31 @@ class Locataire
         $this->civilite = $civilite;
 
         return $this;
+    }
+
+    public function getContrat(): ?Contrat
+    {
+        return $this->contrat;
+    }
+
+    public function setContrat(?Contrat $contrat): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($contrat === null && $this->contrat !== null) {
+            $this->contrat->setLocataire(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($contrat !== null && $contrat->getLocataire() !== $this) {
+            $contrat->setLocataire($this);
+        }
+
+        $this->contrat = $contrat;
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return $this->nom;
     }
 }

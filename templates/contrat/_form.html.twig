@@ -1,0 +1,41 @@
+{{ form_start(form) }}
+<div class="container">
+
+	<div class="row">
+		<h1>Arrivée</h1>
+		<div class="col-md-4">{{ form_row(form.locataire)}}</div>
+		<div class="col-md-4">{{ form_row(form.local)}}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-2">{{ form_row(form.date_entree)}}</div>
+		<div class="col-md-2">{{ form_row(form.loyer)}}</div>
+		<div class="col-md-2">{{ form_row(form.charges)}}</div>
+		<div class="col-md-2">{{ form_row(form.caution)}}</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">{{ form_row(form.date_etat_lieux)}}</div>
+		<div class="col-md-2">{{ form_row(form.eau_entree)}}</div>
+	</div>
+</div>
+
+
+<div class="container">
+	<br>
+	<div class="row">
+		<h1>Sortie</h1>
+		<div class="col-md-2">{{ form_row(form.taxes)}}</div>
+		<div class="col-md-2">{{ form_row(form.date_sortie)}}</div>
+		<div class="col-md-2">{{ form_row(form.eau_sortie)}}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-0">{{ form_row(form.actif)}}</div>
+	</div>
+
+	<div class="row justify-content-md-center">
+
+		<div class="col col-lg-2">
+			<button type="submit" class="btn btn-primary">Valider</button>
+		</div>
+{{ form_end(form) }}

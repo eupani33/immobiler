@@ -21,19 +21,16 @@ class EcritureController extends AbstractController
      */
     public function index(Request $request, EcritureRepository $ecriture): Response
     {
-        $offset = max(0, $request->query->getInt('offset', 0));
-        $paginator = $ecriture->getEcriturePaginator($offset);
+        // $offset = max(0, $request->query->getInt('offset', 0));
+        //$paginator = $ecriture->getEcriturePaginator($offset);
 
 
-        // $ecritures = $this->getDoctrine()
-        //   ->getRepository(Ecriture::class)
-        //   ->findAll();
+        $ecritures = $this->getDoctrine()
+            ->getRepository(Ecriture::class)
+            ->findAll();
 
         return $this->render('ecriture/index.html.twig', [
-            'ecritures' => $paginator,
-            'previous' => $offset - EcritureRepository::PAGINATOR_PER_PAGE,
-            'next' => min(count($paginator), $offset + EcritureRepository::PAGINATOR_PER_PAGE),
-
+            'ecritures' => $ecritures
         ]);
     }
 

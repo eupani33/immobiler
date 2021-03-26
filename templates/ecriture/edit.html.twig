@@ -3,11 +3,28 @@
 {% block title "Edition"%}
 
 {% block body %}
-	<div class="contain mt-5">
+	<div class="container mt-5">
 
-		{{ include('ecriture/_form.html.twig', {'button_label': 'Update'}) }}
-    		<a href="{{ path('ecriture_index') }}"></a>
+		{{form_start(form)}}
 
-		{{ include('ecriture/_delete_form.html.twig') }}
+		<div class="row">
+			<div class="col-md-4">{{ form_row(form.libelle)}}</div>
+			<div class="col-md-4">{{ form_row(form.type)}}</div>
+			<div class="col-md-3">{{ form_row(form.montant)}}</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-5">{{ form_row(form.local)}}</div>
+			<div class="col-md-6">{{ form_row(form.categorie)}}</div>
+		</div>
+
+		<div class="row">
+
+			<div class="col-md-2">{{ form_row (form.date) }}</div>
+			<div class="col-md-1">{{ form_row(form.pointage )}}</div>
+		</div>
+
+		<button class="btn btn-primary">Valider</button>
 	</div>
-{% endblock %}
+	{{form_end(form)}}
+</div>{% endblock %}

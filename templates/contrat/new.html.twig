@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title"new" %}
+
+{% block body %}
+
+	<div class="container">
+
+		{{ include('contrat/_form.html.twig') }}
+
+		<div class="col col-lg-2">
+			<a href="{{ path('contrat_index') }}" class="btn btn-info">Annuler</a>
+		</div>
+
+	</div>
+</div>
+{% endblock %}

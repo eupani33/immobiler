@@ -9,13 +9,13 @@
 						<th data-field="civil" data-sortable="true">Civil.</th>
 						<th data-field="nom" data-sortable="true">Nom</th>
 						<th data-field="prenom" data-sortable="true">Prénom</th>
-						<th data-field="adresse" data-sortable="true">Adresse</th>
+						<th data-field="adresse" data-sortable="true" data-width="800">Adresse</th>
 						<th data-field="cp" data-sortable="true">Code Postal</th>
 						<th data-field="ville" data-sortable="true">Ville</th>
 						<th data-field="naissance" data-sortable="true">Naissance</th>
 						<th data-field="lieux" data-sortable="true">Lieux</th>
-						<th data-field="tel" data-sortable="true">Télèphone</th>
-						<th data-field="email" data-sortable="true">Email</th>
+						<th data-field="tel" data-sortable="true" data-width="150">Télèphone</th>
+						<th data-field="email" data-sortable="true" data-width="100">Email</th>
 						<th>actions</th>
 					</thead>
 
@@ -26,16 +26,15 @@
 								<td>{{ locataire.nom }}</td>
 								<td>{{ locataire.prenom }}</td>
 								<td>{{ locataire.adresse }}</td>
-								<td>{{ locataire.ville }}</td>
 								<td>{{ locataire.cp }}</td>
+								<td>{{ locataire.ville }}</td>
 								<td>{{ locataire.dateNaissance ? locataire.dateNaissance|date('d-m-Y') : ''}}</td>
 								<td>{{ locataire.lieuxNaissance }}</td>
 								<td>{{ locataire.tel }}</td>
 								<td>{{ locataire.email }}</td>
 								<td>
-									<a href="{{ path('locataire_edit', {'id': locataire.id}) }}">edit</a>
+									<a href="{{ path('locataire_edit', {'id': locataire.id}) }}" class="btn btn-secondary">edit</a>
 								</td>
-
 							</tr>
 						{% endfor %}
 					</tbody>

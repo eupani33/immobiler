@@ -13,7 +13,8 @@
 							<th data-field="type" data-sortable="true">Type</th>
 							<th data-field="libelle" data-sortable="true">Libelle</th>
 							<th data-field="montant" data-sortable="true">Montant</th>
-							<th>Pointage</th>
+							<th data-checkbox="true">Pointage</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -27,19 +28,10 @@
 								<td>{{ ecriture.pointage }}</td>
 
 								<td>
-									<a href="{{ path('ecriture_edit', {'id': ecriture.id}) }}">edit</a>
+									<a href="{{ path('ecriture_edit', {'id': ecriture.id}) }}" class="btn btn-secondary ">edit</a>
 								</td>
 							</tr>
 						{% endfor %}
-
-						{% if previous >= 0 %}
-							<a href="{{ path('ecriture_index',{offset: previous}) }}">Précedent
-							</a>
-						{% endif %}
-
-						{% if next < ecritures|length %}
-							<a href="{{ path('ecriture_index',{offset: next}) }}">Suivant</a>
-						{% endif %}
 
 
 					</tbody>

@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Local{% endblock %}
+{% block title "New Local" %}
 
 {% block body %}
-    <h1>Create new Local</h1>
+	<h1>Create new Local</h1>
 
-    {{ include('local/_form.html.twig') }}
+	{{ include('local/_form.html.twig') }}
 
-    <a href="{{ path('local_index') }}">back to list</a>
-{% endblock %}
+
+	<div class="col col-lg-2">
+		<a href="{{ path('local_index') }}" class="btn btn-info">Annuler</a>
+	</div>
+
+</div></div>{% endblock %}

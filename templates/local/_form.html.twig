@@ -1,10 +1,29 @@
-{{ form_start(form) }}
-<div class="container">
-	<div class="form-row">
-		<div class="form-group col-md-6">
-			{{form_row(form.nom)}}
-		</div>
+{{form_start(form)}}
+<div class="container mt-5">
+
+	<div class="row">
+		<div class="col-md-3">{{ form_row(form.nom)}}</div>
+		<div class="col-md-2">{{ form_row(form.surface)}}</div>
 	</div>
-	<button type="submit" class="btn btn-primary">Valider</button>
-</div>
-{{ form_end(form) }}
+
+	<div class="row">
+		<div class="col-md-5">{{ form_row(form.adresse)}}</div>
+		<div class="col-md-5">{{ form_row(form.ville)}}</div>
+		<div class="col-md-2">{{ form_row(form.cp)}}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3">{{ form_row(form.compteur_edf)}}</div>
+		<div class="col-md-3">{{ form_row(form.eau)}}</div>
+		<div class="col-md-3">{{ form_row(form.internet)}}</div>
+		<div class="col-md-3">{{ form_row(form.gaz)}}</div>
+	</div>
+  {{ "." }}
+	<div class="row justify-content-md-center">
+
+		<div class="col col-lg-2">
+			<button type="submit" class="btn btn-primary">Valider</button>
+		</div>
+
+
+		{{form_end(form)}}

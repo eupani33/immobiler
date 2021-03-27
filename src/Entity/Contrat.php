@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ContratRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -76,6 +78,16 @@ class Contrat
      * @ORM\OneToOne(targetEntity=Locataire::class, inversedBy="contrat", cascade={"persist", "remove"})
      */
     private $locataire;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Loyer::class, mappedBy="contrat", orphanRemoval=true)
+     */
+    private $loyers;
+
+    public function __construct()
+    {
+        $this->loyers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -197,7 +209,7 @@ class Contrat
 
     public function setActif(?bool $actif): self
     {
-        
+
         $this->actif = $actif;
 
         return $this;
@@ -225,5 +237,39 @@ class Contrat
         $this->locataire = $locataire;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Loyer[]
+     */
+    public function getLoyers(): Collection
+    {
+        return $this->loyers;
+    }
+
+    public function addLoyer(Loyer $loyer): self
+    {
+        if (!$this->loyers->contains($loyer)) {
+            $this->loyers[] = $loyer;
+            $loyer->setContrat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLoyer(Loyer $loyer): self
+    {
+        if ($this->loyers->removeElement($loyer)) {
+            // set the owning side to null (unless already changed)
+            if ($loyer->getContrat() === $this) {
+                $loyer->setContrat(null);
+            }
+        }
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return '' . $this->id;
     }
 }

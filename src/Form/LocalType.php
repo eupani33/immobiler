@@ -20,7 +20,7 @@ class LocalType extends AbstractType
             ->add('compteur_edf', TextType::class, ['label' => 'Cpt Electrique', 'required' => false])
             ->add('internet', TextType::class, ['label' => 'Identifiant Internet', 'required' => false])
             ->add('eau', TextType::class, ['label' => 'Cpt Eau', 'required' => false])
-            ->add('gaz', TextType::class, ['label' => 'Code Gaz', 'required' => false])
+            ->add('gaz', TextType::class, ['label' => 'Cpt Gaz', 'required' => false])
             ->add('surface', TextType::class, ['label' => 'Surface Habitale']);
     }
 

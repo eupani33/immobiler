@@ -10,6 +10,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Contrat|null find($id, $lockMode = null, $lockVersion = null)
  * @method Contrat|null findOneBy(array $criteria, array $orderBy = null)
  * @method Contrat[]    findAll()
+ * @method Contrat[]    findActif()
  * @method Contrat[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ContratRepository extends ServiceEntityRepository
@@ -18,6 +19,7 @@ class ContratRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Contrat::class);
     }
+
     public function findAll()
     {
         return $this->createQueryBuilder('c')
@@ -25,6 +27,14 @@ class ContratRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    public function findActif()
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.actif=true')
+            ->getQuery()
+            ->getResult();
+    }
+
 
     // /**
     //  * @return Contrat[] Returns an array of Contrat objects

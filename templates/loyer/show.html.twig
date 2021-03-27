@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Loyer{% endblock %}
+
+{% block body %}
+    <h1>Loyer</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ loyer.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ loyer.nom }}</td>
+            </tr>
+            <tr>
+                <th>Montant_tot</th>
+                <td>{{ loyer.montantTot }}</td>
+            </tr>
+            <tr>
+                <th>Loyer</th>
+                <td>{{ loyer.loyer }}</td>
+            </tr>
+            <tr>
+                <th>Charhe</th>
+                <td>{{ loyer.charhe }}</td>
+            </tr>
+            <tr>
+                <th>Caf</th>
+                <td>{{ loyer.caf }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ loyer.status ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Periode_du</th>
+                <td>{{ loyer.periodeDu ? loyer.periodeDu|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Periode_au</th>
+                <td>{{ loyer.periodeAu ? loyer.periodeAu|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Paiement</th>
+                <td>{{ loyer.paiement }}</td>
+            </tr>
+            <tr>
+                <th>Charges_info</th>
+                <td>{{ loyer.chargesInfo }}</td>
+            </tr>
+            <tr>
+                <th>Paie_1</th>
+                <td>{{ loyer.paie1 }}</td>
+            </tr>
+            <tr>
+                <th>Paie_2</th>
+                <td>{{ loyer.paie2 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('loyer_index') }}">back to list</a>
+
+    <a href="{{ path('loyer_edit', {'id': loyer.id}) }}">edit</a>
+
+    {{ include('loyer/_delete_form.html.twig') }}
+{% endblock %}

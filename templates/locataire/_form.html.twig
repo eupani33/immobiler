@@ -1,47 +1,32 @@
-{{ form_start(form) }}
-<div class="container">
-	<div class="form-group">
-		<label for="exampleFormControlInput1" display: inline-block>Civilité</label>
-		{{form_row(form.civilite)}}
-	</div>
-	<div class="form-group col-6">
-		{{form_row(form.nom)}}
-	</div>
-	<div class="form group com-6"></div>
+{{form_start(form)}}
 
-	<div class="form-row col-md-6">
-		{{form_row(form.prenom )}}
-	</div>
+		<div class="row">
+			<div class="col-md-4">{{ form_row(form.civilite)}}</div>
+			<div class="col-md-4">{{ form_row(form.nom)}}</div>
+			<div class="col-md-3">{{ form_row(form.prenom)}}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">{{ form_row(form.adresse)}}</div>
+			<div class="col-md-6">{{ form_row(form.cp)}}</div>
+			<div class="col-md-6">{{ form_row(form.ville)}}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">{{ form_row(form.date_naissance)}}</div>
+			<div class="col-md-5">{{ form_row(form.lieux_naissance)}}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">{{ form_row(form.email)}}</div>
+			<div class="col-md-5">{{ form_row(form.tel)}}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-0">{{ form_row(form.actif)}}</div>
+		</div>
 
-	<div class="form-row col-md-6">
-		{{form_row(form.adresse)}}
-	</div>
 
-	<div class="form-group col-md-6">
-		{{form_row(form.cp)}}
-	</div>
+			<div class="row justify-content-md-center">
 
-	<div class="form-group col-md-6">
-		{{form_row(form.ville)}}
-	</div>
-</div></div><div class="container">
+		<div class="col col-lg-2">
+			<button type="submit" class="btn btn-primary">Valider</button>
+		</div>
 
-<div class="form-row">
-	<div class="form-group col-md-6">
-		{{form_row(form.tel)}}
-	</div>
-	<div class="form-group col-md-6">
-		{{form_row(form.email)}}
-	</div>
-	<div class="form-group col-md-6">
-		{{form_row(form.date_naissance)}}
-	</div>
-	<div class="form-group col-md-6">
-		{{form_row(form.lieux_naissance)}}
-	</div>
-</div>
-<div class="custom-control custom-checkbox">
-	<input type="checkbox" class="custom-control-input" id="customCheck1">
-	<label class="custom-control-label" for="customCheck1">Actif</label>
-</div>
-<button type="submit" class="btn btn-primary">Valider</button></div></div>{{ form_end(form) }}
+		{{form_end(form)}}

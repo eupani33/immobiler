@@ -3,32 +3,15 @@
 {% block title "Local" %}
 
 {% block body %}
-	<div class="container mt-5">
 
-		{{form_start(form)}}
+	<div class="container">
 
-		<div class="row">
-			<div class="col-md-6">{{ form_row(form.nom)}}</div>
-			<div class="col-md-6">{{ form_row(form.surface)}}</div>
+		{{ include('local/_form.html.twig') }}
+       
+		<div class="col col-lg-2">
+			<a href="{{ path('local_index') }}" class="btn btn-info">Annuler</a>
 		</div>
 
-		<div class="row">
-			<div class="col-md-5">{{ form_row(form.adresse)}}</div>
-			<div class="col-md-5">{{ form_row(form.ville)}}</div>
-			<div class="col-md-2">{{ form_row(form.cp)}}</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-6">{{ form_row(form.compteur_edf)}}</div>
-			<div class="col-md-6">{{ form_row(form.internet)}}</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-6">{{ form_row(form.eau)}}</div>
-			<div class="col-md-6">{{ form_row(form.gaz)}}</div>
-		</div>
-
-		<button class="btn btn-primary">Valider</button>
 	</div>
-	{{form_end(form)}}
-</div>{% endblock %}
+</div>
+{% endblock %}

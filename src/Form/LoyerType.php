@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+use App\Entity\Local;
+use App\Entity\Locataire;
 use App\Entity\Loyer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,9 +15,10 @@ class LoyerType extends AbstractType
     {
         $builder
             ->add('nom')
+            ->add('charges_info')
             ->add('montant_tot')
             ->add('loyer')
-            ->add('charhe')
+            ->add('charge')
             ->add('caf')
             ->add('status')
             ->add('periode_du')
@@ -24,8 +27,7 @@ class LoyerType extends AbstractType
             ->add('charges_info')
             ->add('paie_1')
             ->add('paie_2')
-            ->add('contrat')
-            ;
+            ->add('contrat');
     }
 
     public function configureOptions(OptionsResolver $resolver)

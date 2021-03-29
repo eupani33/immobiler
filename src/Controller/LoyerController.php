@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Loyer;
 use App\Entity\Contrat;
+use App\Entity\Loyer;
 use App\Form\LoyerType;
+use App\Repository\ContratRepository;
 use App\Repository\LoyerRepository;
+use DateTime;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @Route("/loyer")
@@ -24,25 +28,31 @@ class LoyerController extends AbstractController
     /**
      * @Route("/api", name="loyer_calcul", methods={"GET"})
      */
-    public function calcul_Loyer(LoyerRepository $loyerRepository): Response
+    public function calcul_Loyer(ContratRepository $contratrepository, Request $request)
     {
 
 
+        foreach ($contrats as $ligne) {
+
+            $loyer = new Loyer();
+            $identifiant = $this->getDoctrine()->getRepository(Contrat::class)->find($ligne->getId());
+            $loyer->setContrat($identifiant);
 
 
-        $loyer = $loyerRepository->apifindAll();
-        $encoders = [new JsonEncode()];
-        $normalizers = [new ObjectNormalizer()];
-        $serializer = new Serializer($normalizers, $encoders);
-        $jsonContent = $serializer->serialize($loyer, 'json', [
-            'circular_reference_handler' => function ($objet) {
-                return $objet->getId();
-            }
-        ]);
 
-        $response = new Response($jsonContent);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+            $loyer->setNom($messageLoyer);
+            $loyer->setMontantTot($ligne->getLoyer() + $ligne->getCharges());
+            $loyer->setLoyer($ligne->getLoyer());
+            $loyer->setCharge($ligne->getCharges());
+            $loyer->setStatus(1);
+            $loyer->setPeriodeDu(new DateTime(date("Y") . date("m") . '01'));
+
+            $loyer->setPeriodeAu(new DateTime());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($loyer);
+            $em->flush();
+        }
+        return new Response('ok', 201);
     }
 
 

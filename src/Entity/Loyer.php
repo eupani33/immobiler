@@ -35,7 +35,7 @@ class Loyer
     /**
      * @ORM\Column(type="float")
      */
-    private $charhe;
+    private $charge;
 
     /**
      * @ORM\Column(type="float", nullable=true)
@@ -124,14 +124,14 @@ class Loyer
         return $this;
     }
 
-    public function getCharhe(): ?float
+    public function getCharge(): ?float
     {
-        return $this->charhe;
+        return $this->charge;
     }
 
-    public function setCharhe(float $charhe): self
+    public function setCharge(float $charge): self
     {
-        $this->charhe = $charhe;
+        $this->charge = $charge;
 
         return $this;
     }

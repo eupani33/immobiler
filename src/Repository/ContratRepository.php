@@ -20,20 +20,19 @@ class ContratRepository extends ServiceEntityRepository
         parent::__construct($registry, Contrat::class);
     }
 
-    public function findAll()
-    {
-        return $this->createQueryBuilder('c')
-            ->orderBy('c.date_entree')
-            ->getQuery()
-            ->getResult();
-    }
-    public function findActif()
+    /**
+     * @return array
+     */
+
+
+    public function findActif(): array
     {
         return $this->createQueryBuilder('c')
             ->where('c.actif=true')
             ->getQuery()
             ->getResult();
     }
+
 
 
     // /**

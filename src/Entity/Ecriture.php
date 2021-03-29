@@ -117,10 +117,6 @@ class Ecriture
         return $this->montant;
     }
 
-    public function getMontant_format(): string
-    {
-        return number_format($this->montant, 2, ',', ' ');
-    }
 
 
     public function setMontant(?float $montant): self

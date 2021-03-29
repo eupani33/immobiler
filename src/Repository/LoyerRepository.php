@@ -27,9 +27,8 @@ class LoyerRepository extends ServiceEntityRepository
     public function apiFindAll(): array 
     {   
         $qb = $this
-            ->createQueryBuilder('p')
-            ->select('p.nom', 'p.loyer')
-            ->orderBy('p.paiement','DESC');
+            ->createQueryBuilder('l')
+            ->orderBy('l.paiement','DESC');
         $query = $qb->getQuery();
         return $query->execute(); 
     } 

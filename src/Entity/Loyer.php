@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Loyer
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -65,7 +66,12 @@ class Loyer
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $charges_info;
+    private $locataire_info;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $local_info;
 
     /**
      * @ORM\Column(type="float", nullable=true)
@@ -82,6 +88,16 @@ class Loyer
      * @ORM\JoinColumn(nullable=false)
      */
     private $contrat;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $date_paiement;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $type;
 
     public function getId(): ?int
     {
@@ -196,14 +212,25 @@ class Loyer
         return $this;
     }
 
-    public function getChargesInfo(): ?string
+    public function getLocataireInfo(): ?string
     {
-        return $this->charges_info;
+        return $this->locataire_info;
     }
 
-    public function setChargesInfo(?string $charges_info): self
+    public function setLocataireInfo(?string $locataire_info): self
     {
-        $this->charges_info = $charges_info;
+        $this->locataire_info = $locataire_info;
+
+        return $this;
+    }
+    public function getLocalInfo(): ?string
+    {
+        return $this->local_info;
+    }
+
+    public function setLocalInfo(?string $local_info): self
+    {
+        $this->local_info = $local_info;
 
         return $this;
     }
@@ -240,6 +267,30 @@ class Loyer
     public function setContrat(?Contrat $contrat): self
     {
         $this->contrat = $contrat;
+
+        return $this;
+    }
+
+    public function getDatePaiement(): ?\DateTimeInterface
+    {
+        return $this->date_paiement;
+    }
+
+    public function setDatePaiement(\DateTimeInterface $date_paiement): self
+    {
+        $this->date_paiement = $date_paiement;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

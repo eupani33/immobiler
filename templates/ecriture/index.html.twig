@@ -24,7 +24,7 @@
 								<td>{{ ecriture.date ? ecriture.date|date('d/m/Y') : '' }}</td>
 								<td>{{ ecriture.type }}</td>
 								<td>{{ ecriture.libelle }}</td>
-								<td>{{ ecriture.montant_format }}€</td>
+								<td>{{ ecriture.montant|number_format }} €</td>
 								<td>{{ ecriture.pointage }}</td>
 
 								<td>

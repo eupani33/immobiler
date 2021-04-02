@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Liste Charges" %}
+
+{% block body %}
+
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col">
+				<table id="datatable" data-toggle="table" data-search="true" class="table table-striped table-bordered" data-pagination="true">
+					<thead>
+						<tr>
+							<th data-field="fournisseur" data-sortable="true" data-align="center">Fournisseur</th>
+							<th data-field="nom" data-align="center">Libelle</th>
+							<th data-field="montant" data-align="center">Montant</th>
+							<th data-field="date" data-align="center">Date</th>
+							<th data-field="action" data-align="center">Action</th>
+						</tr>
+					</thead>
+		<tbody>
+			{% for charge in charges %}
+				<tr>
+					<td>{{ charge.fournisseur.nom }}</td>
+					<td>{{ charge.libelle }}</td>
+					<td>{{ charge.montant|number_format }}
+						€</td>
+					<td>{{ charge.datePaiement ? charge.datePaiement|date('d-m-Y') : '' }}</td>
+					<td>
+						<a href="{{ path('charge_edit', {'id': charge.id}) }}">edit</a>
+					</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<a href="{{ path('charge_new') }}">Nouvel enregistrement</a>
+		</div>
+	</div>
+{% endblock %}

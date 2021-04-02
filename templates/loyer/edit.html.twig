@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Loyer{% endblock %}
+{% block title "editLoyer" %}
 
 {% block body %}
-    <h1>Edit Loyer</h1>
 
-    {{ include('loyer/_form.html.twig', {'button_label': 'Update'}) }}
+	<div class="container">
 
-    <a href="{{ path('loyer_index') }}">back to list</a>
+		{{ include('loyer/_form.html.twig') }}
 
-    {{ include('loyer/_delete_form.html.twig') }}
-{% endblock %}
+		<div class="col col-lg-2">
+			<a href="{{ path('loyer_index') }}" class="btn btn-info">Annuler</a>
+		</div>
+		<div class="col col-lg-2">
+			<a href="{{ path('saisie_loyer', {'id' : loyer.id}) }}" class="btn btn-danger">Paiement</a>
+		</div>
+	</div>
+</div>{% endblock %}

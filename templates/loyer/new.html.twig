@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Loyer{% endblock %}
+{% block title "New"%}
 
 {% block body %}
-    <h1>Create new Loyer</h1>
+	<h1>Creation d'un Loyer</h1>
 
-    {{ include('loyer/_form.html.twig') }}
+	{{ include('loyer/_form.html.twig') }}
 
-    <a href="{{ path('loyer_index') }}">back to list</a>
+	<a href="{{ path('loyer_index') }}">back to list</a>
 {% endblock %}

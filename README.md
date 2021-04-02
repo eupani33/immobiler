@@ -6,4 +6,10 @@ git branch -M main
 git push -u origin main
 /Applications/MAMP/bin/startMysql.sh
 /Applications/MAMP/bin/stopMysql.sh 
- npm run watch
+ 
+npm run watch
+
+
+symfony console nom_command
+
+

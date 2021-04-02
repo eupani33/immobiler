@@ -89,7 +89,8 @@ class CalculLoyerCommand extends Command
             $loyer->setStatus(1);
             $loyer->setPeriodeDu($periodeDu);
             $loyer->setPeriodeAu($periodeAu);
-            $loyer->setChargesInfo($ligne->getLocal().' pour '.$ligne->getLocataire());
+            $loyer->setLocataireInfo($ligne->getLocataire());
+            $loyer->setLocalInfo($ligne->getLocal());
 
             $this->em->persist($loyer);
         }

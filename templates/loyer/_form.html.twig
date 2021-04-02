@@ -1,4 +1,37 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-4">{{ form_row(form.locataire_info) }}</div>
+		<div class="col-md-4">{{ form_row(form.local_info) }}</div>
+		<div class="col-md-4">{{ form_row(form.nom) }}</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-2">{{ form_row(form.montant_tot) }}</div>
+		<div class="col-md-2">{{ form_row(form.loyer) }}</div>
+		<div class="col-md-2">{{ form_row(form.charge) }}</div>
+		<div class="col-md-2">{{ form_row(form.periode_du) }}</div>
+		<div class="col-md-2">{{ form_row(form.periode_au) }}</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-2">{{ form_row(form.date_paiement) }}</div>
+		<div class="col-md-2">{{ form_row(form.paiement) }}</div>
+		<div class="col-md-2">{{ form_row(form.type) }}</div>
+		<div class="col-md-2">{{ form_row(form.caf) }}</div>
+		<div class="col-md-2">{{ form_row(form.paie_1) }}</div>
+		<div class="col-md-2">{{ form_row(form.paie_2) }}</div>
+	</div>
+</div>
+
+
+<div class="row justify-content-md-center">
+
+	<div class="col col-lg-2">
+		<button type="submit" class="btn btn-primary">Valider</button>
+	</div>
+
+	 
+	{{ form_end(form) }}

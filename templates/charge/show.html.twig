@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Charge{% endblock %}
+
+{% block body %}
+    <h1>Charge</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ charge.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ charge.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Montant</th>
+                <td>{{ charge.montant }}</td>
+            </tr>
+            <tr>
+                <th>Date_paiement</th>
+                <td>{{ charge.datePaiement ? charge.datePaiement|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Acompte</th>
+                <td>{{ charge.acompte }}</td>
+            </tr>
+            <tr>
+                <th>Date_acompte</th>
+                <td>{{ charge.dateAcompte ? charge.dateAcompte|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Recurrente</th>
+                <td>{{ charge.recurrente ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Periodicite</th>
+                <td>{{ charge.periodicite }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('charge_index') }}">back to list</a>
+
+    <a href="{{ path('charge_edit', {'id': charge.id}) }}">edit</a>
+
+    {{ include('charge/_delete_form.html.twig') }}
+{% endblock %}

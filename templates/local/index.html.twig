@@ -7,7 +7,7 @@
 				<table id="datatable" data-toggle="table" data-search="true" class="table table-striped table-bordered" data-pagination="true">
 					<thead>
 						<th data-field="nom" data-sortable="true">Nom</th>
-						<th data-field="ville" data-sortable="true">Ville</th>
+						<th data-field="ville" data-sortable="true">Surface</th>
 						<th>actions</th>
 					</thead>
 
@@ -15,7 +15,7 @@
 						{% for local in locals %}
 							<tr>
 								<td>{{ local.nom }}</td>
-								<td>{{ local.surface }}</td>
+								<td>{{ local.surface }} m²</td>
 								<td>
 									<a href="{{ path('local_edit', {'id': local.id}) }}">edit</a>
 								</td>

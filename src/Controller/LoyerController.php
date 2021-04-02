@@ -26,33 +26,29 @@ class LoyerController extends AbstractController
 
 
     /**
-     * @Route("/api", name="loyer_calcul", methods={"GET"})
+     * @Route("/saisie/{id}", name="saisie_loyer")
      */
-    public function calcul_Loyer(ContratRepository $contratrepository, Request $request)
+    public function calcul_Loyer($id, Request $request)
     {
+      
 
-
-        foreach ($contrats as $ligne) {
-
-            $loyer = new Loyer();
-            $identifiant = $this->getDoctrine()->getRepository(Contrat::class)->find($ligne->getId());
-            $loyer->setContrat($identifiant);
+            // $loyer = new Loyer();
+            // $identifiant = $this->getDoctrine()->getRepository(Contrat::class)->find($ligne->getId());
+            // $loyer->setContrat($identifiant);
 
 
 
-            $loyer->setNom($messageLoyer);
-            $loyer->setMontantTot($ligne->getLoyer() + $ligne->getCharges());
-            $loyer->setLoyer($ligne->getLoyer());
-            $loyer->setCharge($ligne->getCharges());
-            $loyer->setStatus(1);
-            $loyer->setPeriodeDu(new DateTime(date("Y") . date("m") . '01'));
+            // $loyer->setNom($messageLoyer);
+            // $loyer->setMontantTot($ligne->getLoyer() + $ligne->getCharges());
+            // $loyer->setLoyer($ligne->getLoyer());
+            // $loyer->setCharge($ligne->getCharges());
+            // $loyer->setStatus(1);
+            // $loyer->setPeriodeDu(new DateTime(date("Y") . date("m") . '01'));
 
-            $loyer->setPeriodeAu(new DateTime());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($loyer);
-            $em->flush();
-        }
-        return new Response('ok', 201);
+            // $loyer->setPeriodeAu(new DateTime());
+            // $em = $this->getDoctrine()->getManager();
+            // $em->persist($loyer);
+             return $this->redirectToRoute('loyer_index');
     }
 
 

@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Charge{% endblock %}
+{% block title"Nouvelle Saisie" %}
 
 {% block body %}
-    <h1>Create new Charge</h1>
 
     {{ include('charge/_form.html.twig') }}
 
-    <a href="{{ path('charge_index') }}">back to list</a>
+    <a href="{{ path('charge_index') }}">Rerour Liste</a>
 {% endblock %}

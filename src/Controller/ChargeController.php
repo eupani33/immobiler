@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Charge;
+use App\Entity\Fournisseur;
 use App\Form\ChargeType;
 use App\Repository\ChargeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,7 +40,6 @@ class ChargeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($charge);
-            $entityManager->flush();
 
             return $this->redirectToRoute('charge_index');
         }
@@ -80,6 +81,37 @@ class ChargeController extends AbstractController
     }
 
     /**
+     * @Route("/{id}/duplique", name="charge_duplique", methods={"GET","POST"})
+     */
+    public function duplique(Request $request, Charge $charge): Response
+    {
+        $fournisseurs = $charge->getFournisseur();
+        $libelle = $charge->getLibelle();
+        $montant = $charge->getMontant();
+
+        $charge = new Charge($charge);
+        $charge->setFournisseur($fournisseurs);
+        $charge->setLibelle($libelle);
+        $charge->setMontant($montant);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($charge);
+        
+        $form = $this->createForm(ChargeType::class, $charge);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('charge_index');
+        }
+
+        return $this->render('charge/edit.html.twig', [
+            'charge' => $charge,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/{id}", name="charge_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Charge $charge): Response
@@ -92,5 +124,4 @@ class ChargeController extends AbstractController
 
         return $this->redirectToRoute('charge_index');
     }
-
 }

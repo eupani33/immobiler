@@ -17,23 +17,25 @@
 							<th data-field="action" data-align="center">Action</th>
 						</tr>
 					</thead>
-		<tbody>
-			{% for charge in charges %}
-				<tr>
-					<td>{{ charge.fournisseur.nom }}</td>
-					<td>{{ charge.libelle }}</td>
-					<td>{{ charge.montant|number_format }}
-						€</td>
-					<td>{{ charge.datePaiement ? charge.datePaiement|date('d-m-Y') : '' }}</td>
-					<td>
-						<a href="{{ path('charge_edit', {'id': charge.id}) }}">edit</a>
-					</td>
+					<tbody>
+						{% for charge in charges %}
+							<tr>
+								<td>{{ charge.fournisseur.nom }}</td>
+								<td>{{ charge.libelle }}</td>
+								<td>{{ charge.montant|number_format }}
+									€</td>
+								<td>{{ charge.datePaiement ? charge.datePaiement|date('d-m-Y') : '' }}</td>
+								<td>
+									<a href="{{ path('charge_edit', {'id': charge.id}) }}"><img src="{{ asset('icons/edits.png') }}"alt="Edition!"/></a>
+									<a href="{{ path('charge_duplique', {'id': charge.id}) }}"><img src="{{ asset('icons/copys.png') }}"alt="Duplique!"/></a>
+									<a href="{{ path('charge_delete', {'id': charge.id}) }}"><img src="{{ asset('icons/deletes.png') }}"alt="Delete!"/></a>
+								</td>
 							</tr>
 						{% endfor %}
 					</tbody>
 				</table>
 			</div>
-			<a href="{{ path('charge_new') }}">Nouvel enregistrement</a>
+			<a href="{{ path('charge_new') }}"><img src="{{ asset('icons/add.png') }}"/></a>
 		</div>
 	</div>
 {% endblock %}

@@ -27,14 +27,14 @@
 								<td>{{ loyer.periodeDu ? loyer.periodeDu|date('d-m-Y') : '' }}</td>
 								<td>{{ loyer.periodeAu ? loyer.periodeAu|date('d-m-Y') : '' }}</td>
 								<td>
-									<a href="{{ path('loyer_edit', {'id': loyer.id}) }}">edit</a>
+									<a href="{{ path('loyer_edit', {'id': loyer.id}) }}"><img src="{{ asset('icons/edits.png') }}" alt="Edition!"/></a>
 								</td>
 							</tr>
 						{% endfor %}
 					</tbody>
 				</table>
 			</div>
-			<a href="{{ path('contrat_new') }}">Nouvel enregistrement</a>
+			<a href="{{ path('contrat_new') }}"><img src="{{ asset('icons/add.png') }}"/></a>
 		</div>
 	</div>
 {% endblock %}

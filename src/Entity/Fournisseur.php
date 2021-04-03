@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\FournisseurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -54,8 +55,12 @@ class Fournisseur
      */
     private $charges;
 
+
+    // @Assert\Regex("/^(0|\+33)[1-9]( *[0-9]{2}){4}/"
     /**
-     * @ORM\Column(type="string", length=14, nullable=true)
+     * @ORM\Column(type="string", length=14, nullable=true) 
+     * @Assert\Regex(pattern="/^[0-9]{2}+[' ']+[0-9]{2}+[' ']+[0-9]{2}+[' ']+[0-9]{2}+[' ']+[0-9]{2}/", message="format téléphone invalide ! 05 05 05 05 05")
+
      */
     private $tel;
 
@@ -170,10 +175,6 @@ class Fournisseur
 
         return $this;
     }
-    public function __toString()
-    {
-        return '' . $this->id;
-    }
 
     public function getTel(): ?string
     {
@@ -182,8 +183,13 @@ class Fournisseur
 
     public function setTel(?string $tel): self
     {
-        $this->tel = $tel;
 
+        $this->tel = $tel;
         return $this;
+    }
+
+    public function __toString()
+    {
+        return '' . $this->id;
     }
 }

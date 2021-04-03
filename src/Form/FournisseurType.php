@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Fournisseur;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,11 +14,11 @@ class FournisseurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
+            ->add('nom', TextType::class )
             ->add('adresse')
             ->add('ville')
             ->add('cp')
-            ->add('email')
+            ->add('email', EmailType::class, ['required' => false,])
             ->add('tel')
             ->add('contact');
     }

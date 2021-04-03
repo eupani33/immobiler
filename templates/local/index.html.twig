@@ -15,9 +15,10 @@
 						{% for local in locals %}
 							<tr>
 								<td>{{ local.nom }}</td>
-								<td>{{ local.surface }} m²</td>
+								<td>{{ local.surface }}
+									m²</td>
 								<td>
-									<a href="{{ path('local_edit', {'id': local.id}) }}">edit</a>
+									<a href="{{ path('local_edit', {'id': local.id}) }}"><img src="{{ asset('icons/edits.png') }}" alt="Edition!"/></a>
 								</td>
 							</tr>
 						{% endfor %}
@@ -25,6 +26,6 @@
 				</table>
 			</div>
 		</div>
-	</div>
-	<a href="{{ path('local_new') }}">Nouvel enregistrement</a>
-{% endblock %}
+
+		<a href="{{ path('local_new') }}"><img src="{{ asset('icons/add.png') }}"/></a>
+	{% endblock %}

@@ -21,14 +21,14 @@
 								<td>{{ contrat.locataire }}</td>
 								<td>{{ contrat.local }}</td>
 								<td>
-									<a href="{{ path('contrat_edit', {'id': contrat.id}) }}">edit</a>
+									<a href="{{ path('contrat_edit', {'id': contrat.id}) }}"><img src="{{ asset('icons/edits.png') }}" alt="Edition!"/></a>
 								</td>
 							</tr>
 						{% endfor %}
 					</tbody>
 				</table>
 			</div>
-			<a href="{{ path('contrat_new') }}">Nouvel enregistrement</a>
+			<a href="{{ path('contrat_new') }}"><img src="{{ asset('icons/add.png') }}"/></a>
 		</div>
 	</div>
 {% endblock %}

@@ -29,12 +29,12 @@
 						<td>{{ fournisseur.email }}</td>
 						<td>{{ fournisseur.tel }}</td>
 						<td>
-							<a href="{{ path('fournisseur_edit', {'id': fournisseur.id}) }}">edit</a>
+							<a href="{{ path('fournisseur_edit', {'id': fournisseur.id}) }}"><img src="{{ asset('icons/edits.png') }}" alt="Edition!"/></a>
 						</td>
 					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 	</div>
-	<a href="{{ path('fournisseur_new') }}">Nouvel enregistrement</a>
+	<a href="{{ path('fournisseur_new') }}"><img src="{{ asset('icons/add.png') }}"/></a>
 </div></div>{% endblock %}

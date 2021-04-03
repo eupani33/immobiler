@@ -24,11 +24,12 @@
 								<td>{{ ecriture.date ? ecriture.date|date('d/m/Y') : '' }}</td>
 								<td>{{ ecriture.type }}</td>
 								<td>{{ ecriture.libelle }}</td>
-								<td>{{ ecriture.montant|number_format }} €</td>
+								<td>{{ ecriture.montant|number_format }}
+									€</td>
 								<td>{{ ecriture.pointage }}</td>
 
 								<td>
-									<a href="{{ path('ecriture_edit', {'id': ecriture.id}) }}" class="btn btn-secondary ">edit</a>
+									<a href="{{ path('ecriture_edit', {'id': ecriture.id}) }}"><img src="{{ asset('icons/edits.png') }}" alt="Edition!"/></a>
 								</td>
 							</tr>
 						{% endfor %}
@@ -39,5 +40,5 @@
 			</table>
 		</div>
 	</div>
-</div>
-<a href="{{ path('ecriture_new') }}">Create new</a>{% endblock %}
+	<a href="{{ path('ecriture_new') }}"><img src="{{ asset('icons/add.png') }}"/></a>
+{% endblock %}

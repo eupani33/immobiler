@@ -58,14 +58,17 @@ class Charge
      */
     private $fournisseur;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $statut;
+
     public function __construct()
     {
         $this->recurrente = false;
+        $this->statut = false;
         $this->date_paiement = new DateTime();
     }
-
-
-
 
     public function getId(): ?int
     {
@@ -179,4 +182,16 @@ class Charge
     // {
     //      return '' . $this->id;
     // }
+
+    public function getStatut(): ?bool
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(bool $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
 }

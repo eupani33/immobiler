@@ -40,6 +40,7 @@ class ChargeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($charge);
+            $entityManager->flush();
 
             return $this->redirectToRoute('charge_index');
         }
@@ -95,7 +96,7 @@ class ChargeController extends AbstractController
         $charge->setMontant($montant);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($charge);
-        
+
         $form = $this->createForm(ChargeType::class, $charge);
         $form->handleRequest($request);
 

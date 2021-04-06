@@ -1,10 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title"Edition"%}
+{% block title"Edition Charges"%}
 
 {% block body %}
+	<div class="container">
 
-    {{ include('charge/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('charge/_form.html.twig')}}
 
-    <a href="{{ path('charge_index') }}">Retour Liste</a>
-{% endblock %}
+		<div class="col col-lg-2">
+			<a href="{{ path('charge_index') }}" class="btn btn-info">Annuler</a>
+		</div>
+
+
+		<div class="col col-lg-2">
+			<a href="{{ path('charge_index', {'id' : charge.id}) }}" class="btn btn-danger">Paiement</a>
+		</div>
+
+	</div>
+</div>{% endblock %}

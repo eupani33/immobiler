@@ -18,7 +18,7 @@
 					<tbody>
 						{% for categorie in categories %}
 							<tr>
-								<td>{{ categorie.nom }}</td>
+								<td>{{ categorie.classe }}</td>
 								<td>{{ categorie.categorie }}</td>
 								<td><a href="{{ path('categorie_edit', {'id': categorie.id}) }}">edit</a></td>
 							</tr>

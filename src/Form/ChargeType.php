@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Charge;
 use App\Entity\Fournisseur;
+use App\Entity\Local;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -33,6 +34,11 @@ class ChargeType extends AbstractType
             ->add('periodicite', ChoiceType::class, ['choices' => [' ' => 'vide', 'Mensuel' => 'Mensuel', 'Trimestriel' => 'Trimestriel', 'Annuel' => 'Annuel']])
             ->add('fournisseur', EntityType::class, [
                 'class' => Fournisseur::class,
+                'choice_label' => 'nom',
+                'multiple' => false
+            ])
+            ->add('local', EntityType::class, [
+                'class' => Local::class,
                 'choice_label' => 'nom',
                 'multiple' => false
             ]);

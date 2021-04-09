@@ -63,6 +63,11 @@ class Charge
      */
     private $statut;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Local::class, inversedBy="charges")
+     */
+    private $local;
+
     public function __construct()
     {
         $this->recurrente = false;
@@ -178,10 +183,7 @@ class Charge
 
         return $this;
     }
-    // public function __toString()
-    // {
-    //      return '' . $this->id;
-    // }
+
 
     public function getStatut(): ?bool
     {
@@ -193,5 +195,22 @@ class Charge
         $this->statut = $statut;
 
         return $this;
+    }
+
+    public function getLocal(): ?Local
+    {
+        return $this->local;
+    }
+
+    public function setLocal(?Local $local): self
+    {
+        $this->local = $local;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return '' . $this->id;
     }
 }

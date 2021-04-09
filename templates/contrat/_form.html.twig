@@ -27,17 +27,26 @@
 		<div class="col-md-2">{{ form_row(form.date_sortie)}}</div>
 		<div class="col-md-2">{{ form_row(form.eau_sortie)}}</div>
 		<div class="col-md-2">{{ form_row(form.taxes)}}</div>
-	</div>
-
-	
-
-	<div class="row">
 		<div class="col-md-0">{{ form_row(form.actif)}}</div>
 	</div>
 
-	<div class="row justify-content-md-center">
-
-		<div class="col col-lg-2">
-			<button type="submit" class="btn btn-primary">Valider</button>
+	<div class="container">
+		<br>
+		 
+		<div class="row">
+			<h1>Charges</h1>
+			<div class="col-md-2">calcul
+			</div>
+			<div class="col-md-2">
+				Syndic</div>
+			<div class="col-md-2">
+				prix de eau</div>
 		</div>
-{{ form_end(form) }}
+
+		<br>
+		<div class="row justify-content-md-center">
+
+			<div class="col col-lg-2">
+				<button type="submit" class="btn btn-primary">Valider</button>
+			</div>
+			{{ form_end(form) }}

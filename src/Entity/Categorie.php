@@ -22,7 +22,7 @@ class Categorie
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $classe;
 
     /**
      * @ORM\OneToMany(targetEntity=Ecriture::class, mappedBy="categorie")
@@ -45,14 +45,14 @@ class Categorie
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getClasse(): ?string
     {
-        return $this->nom;
+        return $this->classe;
     }
 
-    public function setNom(string $nom): self
+    public function setClasse(string $classe): self
     {
-        $this->nom = $nom;
+        $this->classe = $classe;
 
         return $this;
     }

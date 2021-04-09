@@ -74,10 +74,31 @@ class Local
      */
     private $contrats;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $teom;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $syndic;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $prix_eau;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Charge::class, mappedBy="local")
+     */
+    private $charges;
+
     public function __construct()
     {
         $this->ecriture = new ArrayCollection();
         $this->contrats = new ArrayCollection();
+        $this->charges = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -252,8 +273,75 @@ class Local
 
         return $this;
     }
+
+
+    public function getteom(): ?float
+    {
+        return $this->teom;
+    }
+
+    public function setteom(?float $teom): self
+    {
+        $this->teom = $teom;
+
+        return $this;
+    }
+
+    public function getSyndic(): ?float
+    {
+        return $this->syndic;
+    }
+
+    public function setSyndic(?float $syndic): self
+    {
+        $this->syndic = $syndic;
+
+        return $this;
+    }
+
+    public function getPrixEau(): ?float
+    {
+        return $this->prix_eau;
+    }
+
+    public function setPrixEau(?float $prix_eau): self
+    {
+        $this->prix_eau = $prix_eau;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Charge[]
+     */
+    public function getCharges(): Collection
+    {
+        return $this->charges;
+    }
+
+    public function addCharge(Charge $charge): self
+    {
+        if (!$this->charges->contains($charge)) {
+            $this->charges[] = $charge;
+            $charge->setLocal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCharge(Charge $charge): self
+    {
+        if ($this->charges->removeElement($charge)) {
+            // set the owning side to null (unless already changed)
+            if ($charge->getLocal() === $this) {
+                $charge->setLocal(null);
+            }
+        }
+
+        return $this;
+    }
     public function __toString()
     {
-        return $this->nom;
+        return '' . $this->nom;
     }
 }

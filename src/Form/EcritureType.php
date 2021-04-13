@@ -16,6 +16,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Twig\Extra\Intl\IntlExtension;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Test\FormInterface;
 
 class EcritureType extends AbstractType
 {
@@ -37,6 +40,32 @@ class EcritureType extends AbstractType
                 'choice_label' => 'categorie',
                 'multiple' => false
             ]);
+
+        $formModifier = function (FormInterface $form, $mois) {
+            $form->add('mois', ChoiceType::class, [
+                'choices' => [
+                    '01' => '01',
+                    '02' => '02',
+                    '03' => '03',
+                    '04' => '04',
+                    '05' => '05',
+                    '06' => '06',
+                    '07' => '07',
+                    '08' => '08',
+                    '09' => '09',
+                    '10' => '10',
+                    '11' => '11',
+                    '12' => '12',
+                ], 'placeholder' => '',
+                'choices' => $mois,
+                'required' => false
+            ]);
+        };
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($formModifier) {
+
+            $data = $event->getData();
+            $formModifier($event->getForm(), $data->getMois());
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver)

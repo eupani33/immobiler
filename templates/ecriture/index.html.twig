@@ -8,73 +8,59 @@
 		<div class="form-group">
 			<div class="row mb-2">
 				<div class="col">
-					<select id="selec-mois" class="form-control">
-						<optgroup label="Choix du mois">
+					{# {{ form_row ( form.mois ) }} #}
+
+				</div>
+				<div class="col">
+					<select id="selection-annee" class="form-control">
+						<optgroup label="Choix de l'année">
 							<option value="">*</option>
-							<option value="01">Janvier</option>
-							<option value="02">Février</option>
-							<option value="03">Mars</option>
-							<option value="04">Avril</option>
-							<option value="05">Mai</option>
-							<option value="06">Juin</option>
-							<option value="07">Juillet</option>
-							<option value="08">Août</option>
-							<option value="09">Septembre</option>
-							<option value="10">Octobre</option>
-							<option value="11">Novembre</option>
-							<option value="12">Décembre</option>
+							<option value="2021">2021</option>
+							<option value="2020">2020</option>
 						</select>
-
 					</div>
-					<div class="col">
-						<select id="selec-annee" class="form-control">
-							<optgroup label="Choix de l'année">
-								<option value="">*</option>
-								<option value="2021">2021</option>
-								<option value="2020">2020</option>
-							</select>
-						</div>
 
 
-					</div>
 				</div>
 			</div>
-			<div class="container mt-5">
-				<div class="row">
-					<div class="col">
-						<table id="datatable" data-toggle="table" data-search="true" class="table table-striped table-bordered" data-pagination="true">
-							<thead>
-								<tr align="center">
-									<th data-field="date" data-sortable="true">Date</th>
-									<th data-field="type" data-sortable="true">Type</th>
-									<th data-field="libelle" data-sortable="true">Libelle</th>
-									<th data-field="montant" data-sortable="true">Montant</th>
-									<th data-checkbox="true">Pointage</th>
-									<th>Action</th>
+		</div>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col">
+					<table id="datatable" data-toggle="table" data-search="true" class="table table-striped table-bordered" data-pagination="true">
+						<thead>
+							<tr align="center">
+								<th data-field="date" data-sortable="true">Date</th>
+								<th data-field="type" data-sortable="true">Type</th>
+								<th data-field="libelle" data-sortable="true">Libelle</th>
+								<th data-field="montant" data-sortable="true">Montant</th>
+								<th data-checkbox="true">Pointage</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							{% for ecriture in ecritures %}
+								<tr>
+									<td>{{ ecriture.date ? ecriture.date|date('d/m/Y') : '' }}</td>
+									<td>{{ ecriture.type }}</td>
+									<td>{{ ecriture.libelle }}</td>
+									<td>{{ ecriture.montant|number_format }}
+										€</td>
+									<td>{{ ecriture.pointage }}</td>
+
+									<td>
+										<a href="{{ path('ecriture_edit', {'id': ecriture.id}) }}"><img src="{{ asset('icons/edits.png') }}" alt="Edition!"/></a>
+										<a href="{{ path('ecriture_delete', {'id': ecriture.id}) }}"><img src="{{ asset('icons/deletes.png') }}" alt="supprimer!"/></a>
+									</td>
 								</tr>
-							</thead>
-							<tbody>
-
-								{% for ecriture in ecritures %}
-									<tr>
-										<td>{{ ecriture.date ? ecriture.date|date('d/m/Y') : '' }}</td>
-										<td>{{ ecriture.type }}</td>
-										<td>{{ ecriture.libelle }}</td>
-										<td>{{ ecriture.montant|number_format }}
-											€</td>
-										<td>{{ ecriture.pointage }}</td>
-
-										<td>
-											<a href="{{ path('ecriture_edit', {'id': ecriture.id}) }}"><img src="{{ asset('icons/edits.png') }}" alt="Edition!"/></a>
-										</td>
-									</tr>
-								{% endfor %}
+							{% endfor %}
 
 
-							</tbody>
 						</tbody>
-					</table>
-				</div>
+					</tbody>
+				</table>
 			</div>
-			<a href="{{ path('ecriture_new') }}"><img src="{{ asset('icons/add.png') }}"/></a>
-		{% endblock %}
+		</div>
+		<a href="{{ path('ecriture_new') }}"><img src="{{ asset('icons/add.png') }}"/></a>
+	{% endblock %}

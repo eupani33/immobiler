@@ -30,23 +30,6 @@
 					<a class="nav-link" href="{{ path('home') }}">Accueil</a>
 				</li>
 
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Locaux</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<li>
-							<a class="dropdown-item" href="{{ path('local_index') }}">Locaux</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">Immeubles</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="{{ path('fournisseur_index') }}">Fournisseurs</a>
-						</li>
-
-					</ul>
-				</li>
-
 
 				<li class="nav-item active">
 					<a class="nav-link" href="{{ path('locataire_index') }}">Locataires</a>
@@ -84,25 +67,40 @@
 						<li>
 							<a class="dropdown-item" href="logout">Déconnexion</a>
 						</li>
+					</ul>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Données</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<li>
+							<a class="dropdown-item" href="{{ path('local_index') }}">Locaux</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Immeubles</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="{{ path('fournisseur_index') }}">Fournisseurs</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="{{ path('categorie_index') }}">Catégories</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="{{ path('type_index') }}">Paiement</a>
+						</li>
 
 					</ul>
 				</li>
 
+			</li>
 
-			</ul>
 
-		</div>
-	</nav>
-	<!-- NavBar -->
-	{% block body %}
-  
-
-{% endblock %}
-
-	<!-- Footer -->
-	<footer class="text-center text-white fixed-bottom" style="background-color: #0d6efd">
-		<div class="text-center p-3" style="background-color: ##0d6efd">©{{ 'now'|date('Y') }}- immobilier for paniagua:
-			<a class="text-white" href="https://paniagua.fr/">paniagua.fr</a>
-		</div>
-	</footer>
-</html>
+		</ul>
+	</div>
+</html></nav><!-- NavBar -->{% for message in app.flashes('info') %}
+<div class="alert alert-info">
+	<p class="text-center">{{message}}</p>
+</div>{% endfor %}{% block body %}{% endblock %}<!-- Footer --><footer class="text-center text-white fixed-bottom" style="background-color: #0d6efd">
+<div class="text-center p-3" style="background-color: ##0d6efd">©{{ 'now'|date('Y') }}- immobilier for paniagua:
+	<a class="text-white" href="https://paniagua.fr/">paniagua.fr</a>
+</div></footer></html>

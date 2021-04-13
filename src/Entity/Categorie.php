@@ -34,9 +34,15 @@ class Categorie
      */
     private $categorie;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Charge::class, mappedBy="categorie")
+     */
+    private $charges;
+
     public function __construct()
     {
         $this->ecriture = new ArrayCollection();
+        $this->charges = new ArrayCollection();
     }
 
 
@@ -95,6 +101,36 @@ class Categorie
     public function setCategorie(string $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Charge[]
+     */
+    public function getCharges(): Collection
+    {
+        return $this->charges;
+    }
+
+    public function addCharge(Charge $charge): self
+    {
+        if (!$this->charges->contains($charge)) {
+            $this->charges[] = $charge;
+            $charge->setCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCharge(Charge $charge): self
+    {
+        if ($this->charges->removeElement($charge)) {
+            // set the owning side to null (unless already changed)
+            if ($charge->getCategorie() === $this) {
+                $charge->setCategorie(null);
+            }
+        }
 
         return $this;
     }

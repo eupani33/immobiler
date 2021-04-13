@@ -161,4 +161,8 @@ class Ecriture
 
         return $this;
     }
+    function __toString()
+    {
+        return '' . $this->id;
+    }
 }

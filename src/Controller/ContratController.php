@@ -21,7 +21,7 @@ class ContratController extends AbstractController
     public function index(ContratRepository $contratRepository): Response
     {
         return $this->render('contrat/index.html.twig', [
-            'contrats' => $contratRepository->findAll(),
+            'contrats' => $contratRepository->findActif(),
         ]);
     }
 

@@ -94,11 +94,17 @@ class Local
      */
     private $charges;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Loyer::class, mappedBy="local")
+     */
+    private $loyers;
+
     public function __construct()
     {
         $this->ecriture = new ArrayCollection();
         $this->contrats = new ArrayCollection();
         $this->charges = new ArrayCollection();
+        $this->loyers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -343,5 +349,35 @@ class Local
     public function __toString()
     {
         return '' . $this->nom;
+    }
+
+    /**
+     * @return Collection|Loyer[]
+     */
+    public function getLoyers(): Collection
+    {
+        return $this->loyers;
+    }
+
+    public function addLoyer(Loyer $loyer): self
+    {
+        if (!$this->loyers->contains($loyer)) {
+            $this->loyers[] = $loyer;
+            $loyer->setLocal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLoyer(Loyer $loyer): self
+    {
+        if ($this->loyers->removeElement($loyer)) {
+            // set the owning side to null (unless already changed)
+            if ($loyer->getLocal() === $this) {
+                $loyer->setLocal(null);
+            }
+        }
+
+        return $this;
     }
 }

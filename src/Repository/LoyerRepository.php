@@ -20,17 +20,19 @@ class LoyerRepository extends ServiceEntityRepository
         parent::__construct($registry, Loyer::class);
     }
 
+   
     /**
       * @return array 
       */
      
-    public function apiFindAll(): array 
+    public function FindAllActif(): array 
     {   
-        $qb = $this
-            ->createQueryBuilder('l')
-            ->orderBy('l.paiement','DESC');
-        $query = $qb->getQuery();
-        return $query->execute(); 
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.status = true')
+            ->orderBy('l.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
     } 
 
 

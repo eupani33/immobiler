@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Entity\Contrat;
+use App\Entity\Locataire;
 use App\Entity\Loyer;
 use App\Repository\ContratRepository;
 use App\Repository\LocataireRepository;
@@ -86,11 +87,12 @@ class CalculLoyerCommand extends Command
             $loyer->setMontantTot($ligne->getLoyer() + $ligne->getCharges());
             $loyer->setLoyer($ligne->getLoyer());
             $loyer->setCharge($ligne->getCharges());
-            $loyer->setStatus(1);
+            $loyer->setStatus(true);
             $loyer->setPeriodeDu($periodeDu);
             $loyer->setPeriodeAu($periodeAu);
-            $loyer->setLocataireInfo($ligne->getLocataire());
-            $loyer->setLocalInfo($ligne->getLocal());
+            $locataire = $this->em->getRepository(Locataire::class)->find($ligne->getLocataire());
+            $loyer->setLocataireInfo($locataire->getCivilite() . ' ' . $locataire->getNom() . ' ' . $locataire->getPrenom());
+            $loyer->setLocal($ligne->getLocal());
 
             $this->em->persist($loyer);
         }

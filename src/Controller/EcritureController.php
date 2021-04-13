@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Categorie;
 use App\Entity\Ecriture;
 use App\Form\EcritureType;
 use App\Repository\EcritureRepository;
@@ -19,18 +18,11 @@ class EcritureController extends AbstractController
     /**
      * @Route("/", name="ecriture_index", methods={"GET"})
      */
-    public function index(Request $request, EcritureRepository $ecriture): Response
+    public function index(EcritureRepository $ecritureRepository): Response
     {
-        // $offset = max(0, $request->query->getInt('offset', 0));
-        //$paginator = $ecriture->getEcriturePaginator($offset);
-
-
-        $ecritures = $this->getDoctrine()
-            ->getRepository(Ecriture::class)
-            ->findAll();
-
+        $date = date('Y-04-%');
         return $this->render('ecriture/index.html.twig', [
-            'ecritures' => $ecritures
+            'ecritures' => $ecritureRepository->FindMois($date)
         ]);
     }
 

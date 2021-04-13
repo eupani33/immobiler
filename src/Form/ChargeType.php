@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Categorie;
 use App\Entity\Charge;
 use App\Entity\Fournisseur;
 use App\Entity\Local;
+use App\Entity\Type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -39,6 +41,16 @@ class ChargeType extends AbstractType
             ])
             ->add('local', EntityType::class, [
                 'class' => Local::class,
+                'choice_label' => 'nom',
+                'multiple' => false
+            ])
+            ->add('categorie', EntityType::class, [
+                'class' => Categorie::class,
+                'choice_label' => 'categorie',
+                'multiple' => false
+            ])
+            ->add('type', EntityType::class, [
+                'class' => Type::class,
                 'choice_label' => 'nom',
                 'multiple' => false
             ]);

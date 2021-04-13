@@ -99,6 +99,17 @@ class Loyer
      */
     private $type;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Local::class, inversedBy="loyers")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $local;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="loyers")
+     */
+    private $types;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -291,6 +302,30 @@ class Loyer
     public function setType(?string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getLocal(): ?Local
+    {
+        return $this->local;
+    }
+
+    public function setLocal(?Local $local): self
+    {
+        $this->local = $local;
+
+        return $this;
+    }
+
+    public function getTypes(): ?Type
+    {
+        return $this->types;
+    }
+
+    public function setTypes(?Type $types): self
+    {
+        $this->types = $types;
 
         return $this;
     }

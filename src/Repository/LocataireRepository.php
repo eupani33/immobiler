@@ -23,9 +23,10 @@ class LocataireRepository extends ServiceEntityRepository
      * @return Locataire[] Returns an array of Locataire objects
      */
 
-    public function findAll()
+    public function findActif()
     {
         return $this->createQueryBuilder('c')
+            ->andWhere('c.actif = true')
             ->orderBy('c.nom', 'ASC')
             ->getQuery()
             ->getResult();

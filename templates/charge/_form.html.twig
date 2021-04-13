@@ -1,4 +1,3 @@
-
 {{ form_start(form) }}
 <div class="container mt-5">
 
@@ -16,6 +15,8 @@
 	<div class="row">
 		<div class="col-md-2">{{ form_row(form.acompte)}}</div>
 		<div class="col-md-2">{{ form_row(form.date_acompte)}}</div>
+		<div class="col-md-2">{{ form_row(form.type)}}</div>
+		<div class="col-md-2">{{ form_row(form.categorie)}}</div>
 
 	</div>
 
@@ -24,7 +25,7 @@
 		<div class="col-md-2">{{ form_row(form.periodicite) }}</div>
 	</div>
 
-<br>
+	<br>
 	<div class="row justify-content-md-center">
 		<div class="col col-lg-2">
 			<button type="submit" class="btn btn-primary">Valider</button>

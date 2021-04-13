@@ -29,6 +29,7 @@ class ContratRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('c')
             ->where('c.actif=true')
+            ->orderBy('c.date_entree', 'ASC')
             ->getQuery()
             ->getResult();
     }

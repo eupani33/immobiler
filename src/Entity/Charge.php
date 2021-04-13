@@ -68,6 +68,16 @@ class Charge
      */
     private $local;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="charges")
+     */
+    private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="charges")
+     */
+    private $categorie;
+
     public function __construct()
     {
         $this->recurrente = false;
@@ -212,5 +222,29 @@ class Charge
     public function __toString()
     {
         return '' . $this->id;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
     }
 }

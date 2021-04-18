@@ -1,5 +1,6 @@
 #! /bin/bash
+clear
 git add .
-git commit -m $date  +%Y-%m-%y 
+git commit -m %Date%
 git push
-exit
+exit 0

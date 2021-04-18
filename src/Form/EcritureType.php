@@ -35,38 +35,36 @@ class EcritureType extends AbstractType
                 'choice_label' => 'nom',
                 'multiple' => false
             ])
+            ->add(
+                'mois',
+                ChoiceType::class,
+                array(
+                    'required' => false,
+                    'mapped' => false,
+                    'choices' => $this->buildMonthChoices(),
+                    'choice_attr' => function ($choice, $key, $value) {
+                        return ['class' => 'attending_' . strtolower($key)];
+                    },
+                )
+            )
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
                 'choice_label' => 'categorie',
                 'multiple' => false
             ]);
-
-        $formModifier = function (FormInterface $form, $mois) {
-            $form->add('mois', ChoiceType::class, [
-                'choices' => [
-                    '01' => '01',
-                    '02' => '02',
-                    '03' => '03',
-                    '04' => '04',
-                    '05' => '05',
-                    '06' => '06',
-                    '07' => '07',
-                    '08' => '08',
-                    '09' => '09',
-                    '10' => '10',
-                    '11' => '11',
-                    '12' => '12',
-                ], 'placeholder' => '',
-                'choices' => $mois,
-                'required' => false
-            ]);
-        };
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($formModifier) {
-
-            $data = $event->getData();
-            $formModifier($event->getForm(), $data->getMois());
-        });
     }
+
+    public function buildMonthChoices()
+    {
+        $arrayMonth = array();
+        for ($i = 1; $i <= 12; $i++) {
+            $date = new \DateTime();
+            $date->setDate(1900, $i, 01);
+            $arrayMonth[$i] = $date->format('F');
+        }
+        return $arrayMonth;
+    }
+
 
     public function configureOptions(OptionsResolver $resolver)
     {

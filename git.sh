@@ -1,6 +1,6 @@
 #! /bin/bash
 clear
 git add .
-git commit -m %Date%
+git commit #
 git push
-exit 0
+exit

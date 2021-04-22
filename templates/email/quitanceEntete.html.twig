@@ -1,0 +1,64 @@
+<div style="vertical-align: top; float:left;">
+	<table style="border-collapse: collapse;" border="1" cellspacing="0" cellpadding="2" width="361">
+		<tr style=" border: 1px solid black;">
+			<td style="text-align: center; border-right: none;">
+				<img src="{{ absolute_url(asset('/images/scidevergnes.png')) }}" height="100">
+			</td>
+			<td style="border-left: none; text-align: center" colspan="2">
+				SCI de Vergnes<br/>6 all&eacute;e du Moulin<br/>33270 Bouliac
+				<br/><span style="font-size:smaller;">T&eacute;l.: 06 69 38 88 08<br/>Email: scidevergnes@gmail.com<br/>SIRET: 843718222 00014
+				</span>
+			</td>
+		</tr>
+
+		<td style="font-size:smaller; padding-left:2px; border: 1px solid black;" rowspan="3">
+			Coord.	bancaires
+		</td>
+		<td style="font-size:smaller; padding-left:2px;">
+			Compte:
+		</td>
+		<td style="font-size:smaller; padding-left:2px;">
+			FR7630004019330001011175010
+		</td>
+
+		<tr>
+			<td style="font-size:smaller; padding-left:2px;">
+				Banque:
+			</td>
+			<td style="font-size:smaller; padding-left:2px;">
+				BNP Paribas
+			</td>
+		</tr>
+		<tr>
+			<td style="font-size:smaller; padding-left:2px;">
+				Titulaire:
+			</td>
+			<td style="font-size:smaller; padding-left:2px;">
+				SCI de Vergnes
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div style="vertical-align: top; float: right;">
+	<table style="border-collapse: collapse;" cellspacing="0" cellpadding="2" width="361">
+		<tr style="padding: 10px; border: 1px solid black; border-collapse: collapse;">
+			<td style="TEXT-ALIGN: center; font-size:smaller;">
+				Locataire
+			</td>
+		</tr>
+		<tr style="padding: 10px; border: 1px solid black; border-collapse: collapse;">
+			<td style="TEXT-ALIGN: center; font-size: medium;">
+				<div style="padding:5px;">{{nom}}<br/>{{ adresse }}</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<br><br><br><br>
+				Bouliac, le :
+				{{ 'now'|date('d-m-Y') }}
+			</td>
+		</tr>
+	</table>
+</div>

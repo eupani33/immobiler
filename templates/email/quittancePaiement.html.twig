@@ -1,0 +1,34 @@
+<table style="border-collapse: collapse; margin-left: auto; margin-right: auto" border="1" paddingcellspacing="1" cellpadding="20" width="90%">
+
+	<head>
+		<th>Bien</th>
+		<th>Période</th>
+		<th>Provision charges</th>
+		<th>Loyer</th>
+		<th>Montant Encaissé</th>
+	</head>
+
+	<tbody>
+		<tr style="border: thin solid" align="center">
+			<td>{{adresse}}</td>
+			<td>Avril 2021</td>
+			<td>{{charge}}
+				€</td>
+			<td>{{base}}
+				€
+			</td>
+			<td>{{ paiement }}
+				€</td>
+		</tr>
+	</tbody>
+	<tfoot style="text-align: right">
+		<tr>
+			<th></th>
+			<th>
+				solde
+				{{ (base + charge) - paiement }}
+				€ a devoir...
+			</th>
+		</tr>
+	</tfoot>
+</table>

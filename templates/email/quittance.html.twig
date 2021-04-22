@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+	<link rel="stylesheet" href="{{ absolute_url(asset('pdf/pdf.css')) }}">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Quittance</title>
+
+	<div style="padding:15px; width:90%; height: 270px;">
+		{{ include('/email/quitanceEntete.html.twig') }}
+	</div>
+
+	<div style="padding: 10px 50px 20px; font-family: verdana,geneva;">
+		Objet : Quittance de loyer du mois de
+		{{ mois }}
+		<br/><br/><br/>
+		{{ nom }},
+		<br><br>
+		Je soussigné<span style="font-weight:bold">
+			{{ baileur }}</span>
+		propriétaire du logement désigné ci-dessus, déclare avoir reçu de
+		<span style="font-weight:bold">
+			{{ nom }}
+		</span>, la somme de<span style="font-weight:bold">
+			{{ montant }}
+			&euro;</span>, au titre du paiement du loyer et des charges pour la période de location du
+		<span style="font-weight:bold">{{ periodeDu }}
+			au
+			{{ periodeAu }}</span> et lui en donne quittance, sous réserve de tous mes droits.<br><br><br>
+
+	</div>
+	<br>
+	{{ include('/email/quittancePaiement.html.twig') }}
+	<br/><br/>
+	<div style="padding: 10px 50px 20px; font-family: verdana,geneva;">
+		<span>Je vous remerciant.<br/><br/></span>
+		<div style="padding-left: 350px; font-family: verdana,geneva;">
+			{{baileur}}
+			<br><br>
+			<img src="{{ absolute_url(asset('/images/eupani.png')) }}" height="100">
+		</div>
+	</div>
+</html>

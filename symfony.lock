@@ -93,6 +93,24 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
     },
+    "h4cc/wkhtmltoimage-amd64": {
+        "version": "0.12.4"
+    },
+    "h4cc/wkhtmltopdf-amd64": {
+        "version": "0.12.4"
+    },
+    "knplabs/knp-snappy": {
+        "version": "v1.2.1"
+    },
+    "knplabs/knp-snappy-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "c81bdcf4a9d4e7b1959071457f9608631865d381"
+        }
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
@@ -541,12 +559,6 @@
     },
     "symfony/yaml": {
         "version": "v5.2.5"
-    },
-    "tijsverkoyen/css-to-inline-styles": {
-        "version": "2.2.3"
-    },
-    "twig/cssinliner-extra": {
-        "version": "v3.3.0"
     },
     "twig/extra-bundle": {
         "version": "v3.3.0"

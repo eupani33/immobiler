@@ -1,4 +1,5 @@
 import './../css/global.scss'
+import './../css/app.css'
 
 
 const $ = require('jquery');

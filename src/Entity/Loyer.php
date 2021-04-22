@@ -44,7 +44,7 @@ class Loyer
     private $caf;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default":false})
      */
     private $status;
 
@@ -109,6 +109,11 @@ class Loyer
      * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="loyers")
      */
     private $types;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true, options={"default":false})
+     */
+    private $mail;
 
     public function getId(): ?int
     {
@@ -326,6 +331,18 @@ class Loyer
     public function setTypes(?Type $types): self
     {
         $this->types = $types;
+
+        return $this;
+    }
+
+    public function getMail(): ?bool
+    {
+        return $this->mail;
+    }
+
+    public function setMail(?bool $mail): self
+    {
+        $this->mail = $mail;
 
         return $this;
     }

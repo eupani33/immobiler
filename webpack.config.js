@@ -1,19 +1,17 @@
 const Encore = require('@symfony/webpack-encore');
 
- 
+
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
 Encore
-    // directory where compiled assets will be stored
     .setOutputPath('public/build/')
-    // public path used by the web server to access the output path
-    .setPublicPath('/build') 
-    // only needed for CDN's or sub-directory deploy
-    //.setManifestKeyPrefix('build/')
+    .setPublicPath('/build')
+    .copyFiles({
+        from: './assets/images',
+    })
 
-   
     .addEntry('app', './assets/js/app.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
@@ -50,7 +48,7 @@ Encore
     })
 
     // enables Sass/SCSS support
-    .enableSassLoader()  
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -64,6 +62,6 @@ Encore
 
     // uncomment if you're having problems with a j Query plugin
     .autoProvidejQuery()
-;
+    ;
 
 module.exports = Encore.getWebpackConfig();

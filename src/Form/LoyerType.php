@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Local;
 use App\Entity\Loyer;
 use App\Entity\Type;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -21,13 +22,13 @@ class LoyerType extends AbstractType
         $builder
             ->add('nom', TextType::class, ['label' => 'Descriptif',])
             ->add('locataire_info', TextType::class, ['label' => 'Locataire',])
+            ->add('mail')
             ->add('types', EntityType::class, [
                 'class' => Type::class,
                 'choice_label' => 'nom',
                 'multiple' => false,
                 'label' => 'Type',
             ])
-
 
             ->add('local', EntityType::class, [
                 'class' => Local::class,

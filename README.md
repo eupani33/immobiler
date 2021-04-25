@@ -1,5 +1,5 @@
 npm run watch
 npm run build
 
-symfony console nom_command
+symfony console creation-loyer 05
 ./start.sh

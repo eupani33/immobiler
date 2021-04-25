@@ -8,27 +8,31 @@
 		<th>Montant Encaissé</th>
 	</head>
 
+            
 	<tbody>
 		<tr style="border: thin solid" align="center">
-			<td>{{adresse}}</td>
-			<td>Avril 2021</td>
-			<td>{{charge}}
+			<td>{{ loyer.nom }}</td>
+			<td>{{loyer.nom}}</td>
+			<td>{{loyer.charge}}
 				€</td>
-			<td>{{base}}
+			<td>{{loyer.montantTot}}
 				€
 			</td>
-			<td>{{ paiement }}
+			<td>{{ loyer.paiement }}
 				€</td>
 		</tr>
 	</tbody>
-	<tfoot style="text-align: right">
-		<tr>
-			<th></th>
-			<th>
-				solde
-				{{ (base + charge) - paiement }}
-				€ a devoir...
-			</th>
-		</tr>
-	</tfoot>
+	{% if (loyer.montantTot != loyer.paiement) %}
+
+		<tfoot style="text-align: right">
+			<tr>
+				<th colspan=5>
+					solde {{ loyer.paiement - loyer.montant }} €
+				</th>
+			</tr>
+		</tfoot>
+	{% endif %}
+
 </table>
+
+

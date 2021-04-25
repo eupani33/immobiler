@@ -2,78 +2,84 @@
 
 namespace App\Controller;
 
+use App\Entity\Contrat;
 use Knp\Snappy\Pdf;
-use App\Entity\Loyer;
 use Twig\Environment;
 use App\Repository\LoyerRepository;
+use App\Entity\Locataire;
+use App\Entity\Loyer;
+use Symfony\Component\Mime\Address;
+use App\Repository\LocataireRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Mime\Address;
 
 class MailerController extends AbstractController
 {
+    private $mailer;
     private $twig;
     private $pdf;
 
-    public function __construct(LoyerRepository $loyerRepository, MailerInterface $mailer, Environment $twig, Pdf $pdf)
+    public function __construct(LoyerRepository $loyerRepository, MailerInterface $mailer, Environment $twig, Pdf $pdf, LocataireRepository $locataireRepository, EntityManagerInterface $em)
     {
         $this->twig = $twig;
         $this->pdf = $pdf;
+        $this->mailer = $mailer;
+        $this->loyerRepository = $loyerRepository;
+        $this->locataireRepository = $locataireRepository;
+        $this->em = $em;
     }
-
-
 
     /**
      * @Route("/email", name="email")
      */
-
     public function sendEmail(MailerInterface $mailer)
     {
-        $base = 500;
-        $charge = 30;
-        $loyer =  $base + $charge;
-        $adresse = '20 place Maucaillou 33000 Bordeaux';
+        $compteur = 0;
         $baileur = 'SCI de Vergnes';
-        $nom = 'PANIAGUA Pascale';
-        $periodeDu = '01/04/2021';
-        $periodeAu = '31/04/2021';
-        $mois = 'Avril 2021';
-        $paiement = 525;
-        $filename = 'pdf/Quittance-' . rand(1,1000) . '-' . date('m-Y') . '.pdf';
-        $filename = 'pdf/Quittance-' . $nom . '-' . date('d-m-Y') . '.pdf';
+        $loyer = $this->loyerRepository
+            ->findLoyerToMailer();
 
-        $snappy = new Pdf('/usr/local/bin/wkhtmltopdf');
-       
-        $snappy->generateFromHtml(
-            $this->renderView('email/quittance.html.twig', array(
-                'date' => new \DateTime(),
-                'nom' => $nom,
-                'baileur' => $baileur,
-                'montant' => $loyer,
-                'base' => $base,
-                'charge' => $charge,
-                "periodeDu" => $periodeDu,
-                "periodeAu" => $periodeAu,
-                "adresse" => $adresse,
-                "mois" => $mois,
-                "paiement" => $paiement,
-            )),$filename
-        );
+        foreach ($loyer as $loyers) {
 
-        $email = (new TemplatedEmail())
-            ->from(new Address('scidevergnes@gmail.com', 'SCI de VERGNES'))
-            ->to(new Address('pascale.paniagua@gmail.com'))
-            ->subject('Quittance Loyer')
-            ->attach(fopen($filename, 'r'));
+            $compteur++;
 
-        $mailer->send($email);
-        $this->addFlash(
-            'info',
-            'Mail envoyé'
-        );
+            if (count($loyer) === 0) {
+                continue;
+            }
+            $html = $this->twig->render(
+                'email/quittance.html.twig',
+                [
+                    'loyer' => $loyers,
+                    'baileur' => $baileur,
+                ]
+            );
+
+            $pdf = $this->pdf->getOutputFromHtml($html);
+            $contrat = $this->em->getRepository(Contrat::class)->find($loyers->getContrat());
+            $locataire = $this->em->getRepository(Locataire::class)->find($contrat->getLocataire());
+
+            $email = (new TemplatedEmail())
+                ->from(new Address('scidevergnes@gmail.com', 'SCI de Vergnes'))
+                ->to(new Address($locataire->getEmail(), $loyers->getLocataireInfo()))
+                ->cc('scidevergnes@gmail.com')
+                ->subject('Quittance Loyer')
+                ->htmlTemplate('email/quittance.html.twig')
+                ->context([
+                    'loyer' => $loyers,
+                    'baileur' => $baileur,
+                ])
+                ->attach($pdf, sprintf('quittance-%s.pdf', date('Y-m-d')));
+
+            // $this->mailer->send($email);
+            $this->$loyers->setMail(false);
+        }
+        $this->addFlash('info', 'Mail(s) envoyé(s) = ' . $compteur);
+        $this->em->persist($loyer);
+        $this->em->flush();
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',

@@ -5,7 +5,9 @@ namespace App\Command;
 use App\Entity\Contrat;
 use App\Entity\Locataire;
 use App\Entity\Loyer;
+use App\Entity\Local;
 use App\Repository\ContratRepository;
+use App\Repository\LocalRepository;
 use App\Repository\LocataireRepository;
 use DateTime;
 use Symfony\Component\Console\Command\Command;
@@ -25,11 +27,12 @@ class CalculLoyerCommand extends Command
 
     private $contratRepository;
 
-    public function __construct(EntityManagerInterface $em, ContratRepository $contratRepository, LocataireRepository $locataireRepository)
+    public function __construct(EntityManagerInterface $em, ContratRepository $contratRepository, LocataireRepository $locataireRepository, LocalRepository $localRepository)
     {
         $this->em = $em;
         $this->contratRepository = $contratRepository;
         $this->locataireRepository = $locataireRepository;
+        $this->localRepository = $localRepository;
 
         parent::__construct();
     }
@@ -87,12 +90,16 @@ class CalculLoyerCommand extends Command
             $loyer->setMontantTot($ligne->getLoyer() + $ligne->getCharges());
             $loyer->setLoyer($ligne->getLoyer());
             $loyer->setCharge($ligne->getCharges());
+            $loyer->setMail(false);
             $loyer->setStatus(true);
             $loyer->setPeriodeDu($periodeDu);
             $loyer->setPeriodeAu($periodeAu);
             $locataire = $this->em->getRepository(Locataire::class)->find($ligne->getLocataire());
+            $local = $this->em->getRepository(Local::class)->find($ligne->getLocal());
             $loyer->setLocataireInfo($locataire->getCivilite() . ' ' . $locataire->getNom() . ' ' . $locataire->getPrenom());
+            $loyer->setLocalInfo($local->getNom() . ' ' . $local->getAdresse() . ' ' . $local->getCp(). ' ' . $local->getVille());
             $loyer->setLocal($ligne->getLocal());
+
 
             $this->em->persist($loyer);
         }

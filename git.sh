@@ -1,6 +1,6 @@
 #! /bin/bash
 clear
 git add .
-git commit #
+git commit --all
 git push
 exit

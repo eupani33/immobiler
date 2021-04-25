@@ -35,10 +35,10 @@ class LoyerRepository extends ServiceEntityRepository
         ;
     } 
 
-    public function findAllLoyerToMailer(): array 
+    public function findLoyerToMailer(): array 
     {   
         return $this->createQueryBuilder('l')
-            ->andWhere('l.mail = false')
+            ->andWhere('l.mail = true')
             ->getQuery()
             ->getResult()
         ;

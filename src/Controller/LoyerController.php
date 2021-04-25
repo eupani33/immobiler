@@ -45,6 +45,8 @@ class LoyerController extends AbstractController
         $ecriture = new Ecriture();
         $loyer = $this->getDoctrine()->getRepository(Loyer::class)->find($id);
         $loyer->setStatus(false);
+        $loyer->setMail(true);
+
         $ecriture->setDate($loyer->getDatePaiement());
         $ecriture->setType($loyer->gettypes());
         $ecriture->setLibelle($loyer->getLocataireInfo());
@@ -125,7 +127,7 @@ class LoyerController extends AbstractController
             }
             $this->em->flush();
 
-            // return $this->redirectToRoute('loyer_index');
+            return $this->redirectToRoute('loyer_index');
         }
 
         return $this->render('loyer/edit.html.twig', [

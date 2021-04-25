@@ -87,6 +87,7 @@ class Contrat
     public function __construct()
     {
         $this->loyers = new ArrayCollection();
+        $this->actif = true;
     }
 
     public function getId(): ?int

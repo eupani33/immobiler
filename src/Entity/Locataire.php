@@ -78,7 +78,10 @@ class Locataire
     private $contrat;
 
 
-
+    public function __construct()
+    {
+        $this->setActif =true;
+    }
 
     public function getId(): ?int
     {

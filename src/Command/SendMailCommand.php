@@ -52,14 +52,12 @@ class SendMailCommand extends Command
 
         foreach ($loyer as $loyers) {
             $io->progressAdvance();
-
-            $articles = $this->articleRepository
-                ->findAllPublishedLastWeekByAuthor($author);
+            $loyers = $this->loyerRepository
+                ->findr($author);
             // Skip authors who do not have published articles for the last week
             if (count($loyers) === 0) {
                 continue;
             }
-
             $html = $this->twig->render('email/quittance.html.twig', [
                 'loyer' => $loyers,
             ]);

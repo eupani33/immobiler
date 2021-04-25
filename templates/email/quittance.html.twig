@@ -5,28 +5,33 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Quittance</title>
-
-	<div style="padding:15px; width:90%; height: 270px;">
-		{{ include('/email/quitanceEntete.html.twig') }}
+	<div style="padding:15px; width:90%; height: 270px;">{{ include('/email/quitanceEntete.html.twig') }}
 	</div>
 
 	<div style="padding: 10px 50px 20px; font-family: verdana,geneva;">
 		Objet : Quittance de loyer du mois de
-		{{ mois }}
+		{{ loyer.nom }}
 		<br/><br/><br/>
-		{{ nom }},
+
+
 		<br><br>
 		Je soussigné<span style="font-weight:bold">
-			{{ baileur }}</span>
+			{{ baileur }}
+		</span>
 		propriétaire du logement désigné ci-dessus, déclare avoir reçu de
 		<span style="font-weight:bold">
-			{{ nom }}
+
+			{{ loyer.locataireInfo }}
 		</span>, la somme de<span style="font-weight:bold">
-			{{ montant }}
-			&euro;</span>, au titre du paiement du loyer et des charges pour la période de location du
-		<span style="font-weight:bold">{{ periodeDu }}
+			{{ loyer.paiement }}
+			&euro;</span>
+		le :
+		{{ loyer.datePaiement|date('d-m-Y') }}
+		, au titre du paiement du loyer et des charges pour la période de location du
+		<span style="font-weight:bold">{{ loyer.periodeDu|date('d-m-Y') }}
 			au
-			{{ periodeAu }}</span> et lui en donne quittance, sous réserve de tous mes droits.<br><br><br>
+			{{ loyer.periodeAu|date('d-m-Y') }}</span>
+		et lui en donne quittance, sous réserve de tous mes droits.<br><br><br>
 
 	</div>
 	<br>
@@ -35,7 +40,7 @@
 	<div style="padding: 10px 50px 20px; font-family: verdana,geneva;">
 		<span>Je vous remerciant.<br/><br/></span>
 		<div style="padding-left: 350px; font-family: verdana,geneva;">
-			{{baileur}}
+			{{ baileur }}
 			<br><br>
 			<img src="{{ absolute_url(asset('/images/eupani.png')) }}" height="100">
 		</div>

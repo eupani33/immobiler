@@ -19,10 +19,6 @@ class Categorie
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $classe;
 
     /**
      * @ORM\OneToMany(targetEntity=Ecriture::class, mappedBy="categorie")
@@ -39,6 +35,12 @@ class Categorie
      */
     private $charges;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="categories")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $classe;
+
     public function __construct()
     {
         $this->ecriture = new ArrayCollection();
@@ -51,17 +53,7 @@ class Categorie
         return $this->id;
     }
 
-    public function getClasse(): ?string
-    {
-        return $this->classe;
-    }
-
-    public function setClasse(string $classe): self
-    {
-        $this->classe = $classe;
-
-        return $this;
-    }
+ 
 
     /**
      * @return Collection|Ecriture[]
@@ -106,7 +98,7 @@ class Categorie
     }
 
     /**
-     * @return Collection|Charge[]
+     * @return |Charge[]
      */
     public function getCharges(): Collection
     {
@@ -131,6 +123,18 @@ class Categorie
                 $charge->setCategorie(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): self
+    {
+        $this->classe = $classe;
 
         return $this;
     }

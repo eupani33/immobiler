@@ -2,25 +2,31 @@
 
 namespace App\Form;
 
-use App\Entity\Categorie;
-use App\Entity\Charge;
-use App\Entity\Fournisseur;
-use App\Entity\Local;
 use App\Entity\Type;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Local;
+use App\Entity\Charge;
+use App\Entity\Categorie;
+use App\Entity\Classe;
+use App\Entity\Fournisseur;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use App\Repository\CategorieRepository;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class ChargeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+
         $builder
             ->add('libelle', TextType::class)
             ->add('montant', MoneyType::class)
@@ -44,16 +50,34 @@ class ChargeType extends AbstractType
                 'choice_label' => 'nom',
                 'multiple' => false
             ])
-            ->add('categorie', EntityType::class, [
-                'class' => Categorie::class,
-                'choice_label' => 'categorie',
-                'multiple' => false
-            ])
             ->add('type', EntityType::class, [
                 'class' => Type::class,
                 'choice_label' => 'nom',
                 'multiple' => false
+            ])
+            ->add('classe', EntityType::class, [
+                'class' => Classe::class,
             ]);
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) {
+                $form = $event->getForm();
+                $data = $event->getData();
+
+                // dd($data);
+                // $formOptions = [
+                //     'class' => Categorie::class,
+                //     'query_builder' => function (CategorieRepository $categorieRepository) use ($data) {
+                //         return $categorieRepository->findAll();
+                //     },
+                // ];
+
+                // $form->add('categorie', EntityType::class);
+
+                $form = $event->getForm();
+            }
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -7,6 +7,7 @@ use App\Entity\Charge;
 use App\Entity\Ecriture;
 use App\Form\ChargeType;
 use App\Entity\Fournisseur;
+use App\Form\ClasseType;
 use App\Repository\ChargeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;

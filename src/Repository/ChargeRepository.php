@@ -19,22 +19,16 @@ class ChargeRepository extends ServiceEntityRepository
         parent::__construct($registry, Charge::class);
     }
 
-    // /**
-    //  * @return Charge[] Returns an array of Charge objects
-    //  */
-    /*
-    public function findByExampleField($value)
+
+
+    public function findClasse()
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('c.classe', 'ASC')
+            ->distinct(true)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Charge

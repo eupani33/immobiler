@@ -17,10 +17,11 @@
 
 					<tbody>
 						{% for categorie in categories %}
+                          
 							<tr>
-								<td>{{ categorie.classe }}</td>
+								<td>{{ categorie.nom }}</td>
 								<td>{{ categorie.categorie }}</td>
-								<td><a href="{{ path('categorie_edit', {'id': categorie.id}) }}">edit</a></td>
+								<td><a href="{{ path('categorie_edit', {'id': categorie.id }) }}">edit</a></td>
 							</tr>
 						{% endfor %}
 					</tbody>

@@ -1,6 +1,8 @@
 #! /bin/bash
+@echo off 
 clear
 git add .
-git commit -m %date%
+NOW=$(date +"%m-%d-%Y")
+git commit -a -m "$NOW"
 git push
 exit

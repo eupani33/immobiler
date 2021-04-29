@@ -21,6 +21,8 @@ class EcritureController extends AbstractController
     public function index(EcritureRepository $ecritureRepository): Response
     {
         $date = date('Y-04-%');
+
+
         return $this->render('ecriture/index.html.twig', [
             'ecritures' => $ecritureRepository->FindMois($date)
         ]);

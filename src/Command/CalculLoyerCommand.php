@@ -100,7 +100,6 @@ class CalculLoyerCommand extends Command
             $loyer->setLocalInfo($local->getNom() . ' ' . $local->getAdresse() . ' ' . $local->getCp(). ' ' . $local->getVille());
             $loyer->setLocal($ligne->getLocal());
 
-
             $this->em->persist($loyer);
         }
         $this->em->flush();

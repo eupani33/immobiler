@@ -2,11 +2,13 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+        <link rel="shortcut icon" href="{{ asset('icons/favicon.ico') }}">
 		<title>
 			{% block title %}
 				Bienvenue
 			{% endblock %}
 		</title>
+
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}

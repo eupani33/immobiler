@@ -4,10 +4,8 @@
 
 {% block body %}
 	<div class="contain mt-5">
-		{{ include('categorie/_form.html.twig', {'button_label': 'Update'}) }}
 
 		<a href="{{ path('categorie_index') }}"></a>
-
-		{{ include('categorie/_delete_form.html.twig') }}
-	</div>
+		{{ include('categorie/_form.html.twig', {'button_label': 'Update'}) }}
+		<a href="{{ path('categorie_index') }}" class="btn btn-info">Annuler</a>
 {% endblock %}

@@ -61,6 +61,7 @@ class MailerController extends AbstractController
             $pdf = $this->pdf->getOutputFromHtml($html);
             $contrat = $this->em->getRepository(Contrat::class)->find($loyers->getContrat());
             $locataire = $this->em->getRepository(Locataire::class)->find($contrat->getLocataire());
+            
 
             $email = (new TemplatedEmail())
                 ->from(new Address('scidevergnes@gmail.com', 'SCI de Vergnes'))
@@ -74,14 +75,17 @@ class MailerController extends AbstractController
                 ])
                 ->attach($pdf, sprintf('quittance-%s.pdf', date('Y-m-d')));
 
-            // $this->mailer->send($email);
-            $this->$loyers->setMail(false);
+            $this->mailer->send($email);
+
+            $loyers->setMail(false);
+
+            $this->addFlash('info', 'Mail envoyé à ' . $loyers->getLocataireInfo());
+            $this->em->persist($loyers);
         }
-        $this->addFlash('info', 'Mail(s) envoyé(s) = ' . $compteur);
-        $this->em->persist($loyer);
+
         $this->em->flush();
 
-        return $this->render('home/index.html.twig', [
+         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }

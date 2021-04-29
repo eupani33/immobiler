@@ -21,20 +21,21 @@
 					<tbody>
 						{% for loyer in loyers %}
 							<tr>
-								<td>{{ loyer.locataireinfo }}</td>
+								<td>{{ loyer.locataireInfo }}</td>
 								<td>{{ loyer.nom }}</td>
 								<td>{{ loyer.montantTot }}</td>
 								<td>{{ loyer.periodeDu ? loyer.periodeDu|date('d-m-Y') : '' }}</td>
 								<td>{{ loyer.periodeAu ? loyer.periodeAu|date('d-m-Y') : '' }}</td>
 								<td>
-									<a href="{{ path('loyer_edit', {'id': loyer.id}) }}"><img src="{{ asset('icons/edits.png') }}" alt="Edition!"/></a>
+									<a href="{{ path('loyer_edit', {'id': loyer.id}) }}"><img src="{{ asset('icons/edits.png') }}"/></a>
+	                                <a href="{{ path('loyer_new', {'id': loyer.contrat}) }}"><img src="{{ asset('icons/add.png') }}"/></a>
 								</td>
 							</tr>
 						{% endfor %}
 					</tbody>
 				</table>
 			</div>
-			<a href="{{ path('contrat_new') }}"><img src="{{ asset('icons/add.png') }}"/></a>
+		
 		</div>
 	</div>
 {% endblock %}

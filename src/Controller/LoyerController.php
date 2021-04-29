@@ -6,6 +6,7 @@ use App\Entity\Categorie;
 use App\Entity\Contrat;
 use App\Entity\Ecriture;
 use App\Entity\Local;
+use App\Entity\Locataire;
 use App\Entity\Loyer;
 use App\Form\LoyerType;
 use App\Repository\ContratRepository;
@@ -48,7 +49,7 @@ class LoyerController extends AbstractController
         $loyer->setMail(true);
 
         $ecriture->setDate($loyer->getDatePaiement());
-        $ecriture->setType($loyer->gettypes());
+        $ecriture->setType($loyer->getTypes());
         $ecriture->setLibelle($loyer->getLocataireInfo());
 
         $ecriture->setMontant($loyer->getPaiement());
@@ -72,24 +73,41 @@ class LoyerController extends AbstractController
      */
     public function index(LoyerRepository $loyerRepository): Response
     {
+        $loyers = $loyerRepository->FindAllActif();
 
         return $this->render('loyer/index.html.twig', [
-            'loyers' => $loyerRepository->FindAllActif(),
+            'loyers' => $loyerRepository->findBy(array(), array('nom' => 'DESC')),
         ]);
     }
 
     /**
-     * @Route("/new", name="loyer_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="loyer_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, $id): Response
     {
+
         $loyer = new Loyer();
+        $contrat = $this->getDoctrine()->getRepository(Contrat::class)->find($id);
+        $locataire = $this->getDoctrine()->getRepository(Locataire::class)->find($contrat->getLocataire());
+        $local = $this->em->getRepository(Local::class)->find($contrat->getLocal());
+
+        $loyer->setContrat($this->em->getRepository(Contrat::class)->find($contrat->getId()));
+        $loyer->setLocataireInfo($locataire->getCivilite() . ' ' . $locataire->getNom() . ' ' . $locataire->getPrenom());
+        $loyer->setLocalInfo($local->getNom() . ' ' . $local->getAdresse() . ' ' . $local->getCp(). ' ' . $local->getVille());
+        $loyer->setLocal($this->getDoctrine()->getRepository(Local::class)->find($local->getId()));
+        $loyer->setMontantTot($contrat->getLoyer() + $contrat->getCharges());
+        $loyer->setLoyer($contrat->getLoyer());
+        $loyer->setCharge($contrat->getCharges());
+        $loyer->setMail(true);
+        $loyer->setTypes(1);
+        $this->em->persist($loyer);
+
 
         $form = $this->createForm(LoyerType::class, $loyer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            // dd($loyer);
             $this->em->persist($loyer);
             $$this->em->flush();
 

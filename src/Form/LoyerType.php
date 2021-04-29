@@ -44,13 +44,12 @@ class LoyerType extends AbstractType
             ->add('periode_au', DateType::class,  ['widget' => 'single_text', 'required' => false])
             ->add('date_paiement', DateType::class, [
                 'widget' => 'single_text',
-                // 'mapped' => false,
                 'required' => false,
-                // 'empty_data'  => '',
             ])
             ->add('paiement', MoneyType::class, ['required' => false])
             ->add('paie_1', MoneyType::class, ['label' => 'relicat', 'required' => false])
-            ->add('paie_2', MoneyType::class, ['required' => false]);
+            ->add('paie_2', MoneyType::class, ['required' => false])
+            ->add('types');
     }
 
 

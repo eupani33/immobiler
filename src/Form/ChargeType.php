@@ -55,29 +55,11 @@ class ChargeType extends AbstractType
                 'choice_label' => 'nom',
                 'multiple' => false
             ])
-            ->add('classe', EntityType::class, [
-                'class' => Classe::class,
+            ->add('categorie', EntityType::class, [
+                'class' => Categorie::class,
+                'choice_label' => 'categorie',
+
             ]);
-
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) {
-                $form = $event->getForm();
-                $data = $event->getData();
-
-                // dd($data);
-                // $formOptions = [
-                //     'class' => Categorie::class,
-                //     'query_builder' => function (CategorieRepository $categorieRepository) use ($data) {
-                //         return $categorieRepository->findAll();
-                //     },
-                // ];
-
-                // $form->add('categorie', EntityType::class);
-
-                $form = $event->getForm();
-            }
-        );
     }
 
     public function configureOptions(OptionsResolver $resolver)

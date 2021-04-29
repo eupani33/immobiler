@@ -71,16 +71,7 @@ class ChargeController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="charge_show", methods={"GET"})
-     */
-    public function show(Charge $charge): Response
-    {
-        return $this->render('charge/show.html.twig', [
-            'charge' => $charge,
-        ]);
-    }
-
+   
     /**
      * @Route("/{id}/edit", name="charge_edit", methods={"GET","POST"})
      */

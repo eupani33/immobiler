@@ -53,7 +53,7 @@ class SendMailCommand extends Command
         foreach ($loyer as $loyers) {
             $io->progressAdvance();
             $loyers = $this->loyerRepository
-                ->findr($author);
+                ->find($locataire);
             // Skip authors who do not have published articles for the last week
             if (count($loyers) === 0) {
                 continue;
@@ -66,7 +66,7 @@ class SendMailCommand extends Command
 
             $email = (new TemplatedEmail())
                 ->from(new Address('alienmailcarrier@example.com', 'The Space Bar'))
-                ->to(new Address($author->getEmail(), $author->getFirstName()))
+                ->to(new Address($locataire->getEmail(), $locataire->getFirstName()))
                 ->subject('Your weekly report on the Space Bar!')
                 ->htmlTemplate('email/quittance.html.twig')
                 ->context([

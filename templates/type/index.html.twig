@@ -3,12 +3,10 @@
 {% block title %}Type index{% endblock %}
 
 {% block body %}
-    <h1>Type index</h1>
-
+<div class="container">
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>actions</th>
             </tr>
@@ -16,10 +14,8 @@
         <tbody>
         {% for type in types %}
             <tr>
-                <td>{{ type.id }}</td>
                 <td>{{ type.nom }}</td>
                 <td>
-                    <a href="{{ path('type_show', {'id': type.id}) }}">show</a>
                     <a href="{{ path('type_edit', {'id': type.id}) }}">edit</a>
                 </td>
             </tr>
@@ -30,6 +26,6 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('type_new') }}">Create new</a>
+ <a href="{{ path('type_new') }}"><img src="{{ asset('icons/add.png') }}"/></a>
+</div>
 {% endblock %}

@@ -118,7 +118,6 @@ class Categorie
     public function removeCharge(Charge $charge): self
     {
         if ($this->charges->removeElement($charge)) {
-            // set the owning side to null (unless already changed)
             if ($charge->getCategorie() === $this) {
                 $charge->setCategorie(null);
             }
@@ -137,5 +136,9 @@ class Categorie
         $this->classe = $classe;
 
         return $this;
+    }
+    public function __toString()
+    {
+        return '' . $this->id;
     }
 }

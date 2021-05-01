@@ -8,11 +8,9 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build')
-    .copyFiles({
-        from: './assets/images',
-    })
+    .copyFiles({ from: './assets/images',  })
 
-    .addEntry('app', './assets/js/app.js')
+    .addEntry('app', './assets/app.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

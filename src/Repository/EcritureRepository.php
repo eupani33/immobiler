@@ -3,9 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Ecriture;
-
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\DoctrineExtensions;
 
 /**
  * @method Ecriture|null find($id, $lockMode = null, $lockVersion = null)
@@ -37,6 +38,19 @@ class EcritureRepository extends ServiceEntityRepository
             ->andWhere('c.date LIKE :date')
             ->setParameter('date', $date)
             ->orderBy('c.date', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function Findstat($date)
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c.montant AS Ca')
+            ->addSelect('c.date AS mois')
+            ->where('c.categorie BETWEEN  1 AND 4')
+            ->andWhere('c.date LIKE :date')
+            ->setParameter('date', $date)
+            ->orderBy('c.date', 'ASC')
             ->getQuery()
             ->getResult();
     }

@@ -21,6 +21,7 @@
         "@babel/plugin-transform-arrow-functions": "^7.13.0",
         "@babel/preset-env": "^7.13.10",
         "@symfony/stimulus-bridge": "^2.0.0",
+        "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/Resources/assets",
         "@symfony/webpack-encore": "^1.0.0",
         "babel-eslint": "^10.1.0",
         "babel-loader": "^8.2.2",

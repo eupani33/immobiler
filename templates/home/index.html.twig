@@ -1,9 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block title "Accueil" %}
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags('app') }}
+{% endblock %}
 
 {% block body %}
 	<div class="container mt-5">
-		<img src="/images/under-construction.gif" class="irounded mx-auto d-block" alt="Responsive image">
+		{{ render_chart(stat, {'id': 'my-chart'})}}
+
+		<table class="table table-striped table-bordered">
+			{% set caAnnuel = 0 %}
+			{% for key, valeur in donnees %}
+				<tr>
+					<th>{{ key }}</th>
+					<td>{{ valeur|number_format(0,',','.') }}
+						€
+						{% set caAnnuel = caAnnuel + valeur %}
+					</td>
+				</tr>
+			{% endfor %}
+			<tfoot style="text-align: right">
+				<tr>
+					<th colspan="2">
+						Annuel
+						{{ caAnnuel|number_format(0,',','.') }}
+						€
+					</th>
+				</tr>
+			</tfoot>
+		</table>
 	</div>
 {% endblock %}

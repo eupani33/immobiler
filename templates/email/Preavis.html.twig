@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+	<link rel="stylesheet" href="{{ absolute_url(asset('pdf/pdf.css')) }}">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Quittance</title>
+	<div style="padding:15px; width:90%; height: 270px;">{{ include('/email/Entete.html.twig') }}
+</html></div><div style="padding: 10px 50px 20px; font-family: verdana,geneva;">
+Objet :<span style="font-weight:bold"> Votre préavis</span>
+<br/>
+Référence location : <span style="font-weight:bold">
+{{ local.adresse }}
+{{ local.cp }}
+{{ local.ville }}</span>
+ 
+
+
+<br><br>
+{{ locataire.civilite }}
+{{ locataire.prenom }}
+{{ locataire.nom }},
+ 
+	<pre> 
+J'accuse réception de votre courrier où vous m’informez de votre décision de mettre fin au bail pour<br>le local cité en référence. Conformément à votre courrier, je prends acte de votre départ pour<br>la date du :<span style="font-weight:bold">{{ contrat.datesortie|date('d-m-Y') }}</span>.<br>
+Je vous rappelle que jusqu'à cette date, vous devez acquitter normalement vos loyers et vos charges.
+
+Je vous invite à prendre vos dispositions pour libérer les lieux à cette date, après avoir rempli<br>les obligations vous incombant. Il vous appartient notamment d'effectuer les réparations locatives à votre<br>charge et de restituer le local tel que décrit dans l'état des lieux rédigé à votre entrée.
+
+Il vous appartient également de régler la taxe d'habitation afférente au logement, et de me faire parvenir<br>la quittance de cette taxe d'habitation, conformément à l'article 1686 du Code Général des Impôts.<br>Cette quittance (ou bordereau de situation) vous sera délivrée par votre Centre des Impôts.
+
+Enfin, je vous invite à me communiquer votre nouvelle adresse, dès que vous en aurez connaissance.<br><br>Je vous prie de croire,<span style="font-weight:bold"> {{locataire.civilite}} {{ locataire.nom }}</span>, en l’expression de mes sentiments les meilleurs.
+</pre>
+</div>
+		<br><br><br>
+
+	</div>
+
+	<div style="padding-left: 350px; font-family: verdana,geneva;">
+		{{ baileur }}
+		<br><br>
+		<img src="{{ absolute_url(asset('/images/eupani.png')) }}" height="100"></div>
+</html></div></html>

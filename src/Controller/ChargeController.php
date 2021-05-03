@@ -32,7 +32,7 @@ class ChargeController extends AbstractController
     public function index(ChargeRepository $chargeRepository): Response
     {
         return $this->render('charge/index.html.twig', [
-            'charges' => $chargeRepository->findAll(),
+            'charges' => $chargeRepository->findBy(array(), array('date' => 'DESC')),
         ]);
     }
 

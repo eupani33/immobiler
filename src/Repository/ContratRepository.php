@@ -34,6 +34,15 @@ class ContratRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findPreavis(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andwhere('c.date_sortie IS NOT NULL')
+            ->andwhere('c.actif=true')
+            ->getQuery()
+            ->getResult();
+    }
+
 
 
     // /**

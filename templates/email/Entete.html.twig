@@ -44,12 +44,17 @@
 	<table style="border-collapse: collapse;" cellspacing="0" cellpadding="2" width="361">
 		<tr style="padding: 10px; border: 1px solid black; border-collapse: collapse;">
 			<td style="TEXT-ALIGN: center; font-size:smaller;">
-				Locataire
+				Locataire Destinataire
 			</td>
 		</tr>
 		<tr style="padding: 10px; border: 1px solid black; border-collapse: collapse;">
 			<td style="TEXT-ALIGN: center; font-size: medium;">
-				<div style="padding:5px;">{{ loyer.locataireInfo }}<br/>{{ loyer.local.adresse }} <br/>{{ loyer.local.cp }} {{ loyer.local.ville }}</div>
+				<div style="padding:5px;">{{ locataire.civilite}}
+					{{ locataire.Prenom}}
+					{{ locataire.Nom}}
+					<br/>{{  local.adresse }}
+					<br/>{{  local.cp }}
+					{{ local.ville }}</div>
 			</td>
 		</tr>
 

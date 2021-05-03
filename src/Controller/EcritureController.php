@@ -24,7 +24,7 @@ class EcritureController extends AbstractController
 
 
         return $this->render('ecriture/index.html.twig', [
-            'ecritures' => $ecritureRepository->FindMois($date)
+            'ecritures' => $ecritureRepository->findBy(array(), array('date' => 'DESC')),
         ]);
     }
 

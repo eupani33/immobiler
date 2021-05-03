@@ -11,7 +11,7 @@
             
 	<tbody>
 		<tr style="border: thin solid" align="center">
-			<td> {{ loyer.local.adresse }} <br/>{{ loyer.local.cp }}  {{ loyer.local.ville }}</td>
+			<td> {{ local.adresse }} <br/>{{ local.cp }}  {{ local.ville }}</td>
 			<td>{{loyer.nom}}</td>
 			<td>{{loyer.charge}}
 				€</td>
@@ -27,7 +27,7 @@
 		<tfoot style="text-align: right">
 			<tr>
 				<th colspan=5>
-					solde {{ loyer.paiement - loyer.montant }} €
+					solde {{ loyer.paiement - loyer.montantTot }} €
 				</th>
 			</tr>
 		</tfoot>

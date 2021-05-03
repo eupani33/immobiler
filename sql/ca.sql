@@ -1,8 +1,8 @@
--- SELECT  FORMAT(sum(montant),0), YEAR(date),  MONTH(date)
--- FROM   ecriture
--- WHERE categorie_id BETWEEN  1 AND 4
--- GROUP BY YEAR(date), MONTH(date)
--- ORDER BY  YEAR(date), MONTH(date)
+SELECT  SUM(montant) FROM   ecriture
+WHERE  date LIKE '2021-03-%' AND categorie_id BETWEEN 1 and 4;
+
+ 
+
 
 SELECT YEAR(date) AS an,
       	SUM(CASE WHEN MONTH(date) = 1 THEN montant ELSE 0 END) Jan,   
